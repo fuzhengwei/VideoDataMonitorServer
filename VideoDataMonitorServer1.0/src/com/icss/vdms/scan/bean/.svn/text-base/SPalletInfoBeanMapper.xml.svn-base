@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.scan.dao.SPalletInfoDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.scan.bean.SPalletInfoBean" >
+    <id column="PI_ID" property="piId" jdbcType="BIGINT" />
+    <result column="PI_PALLET_ID" property="piPalletId" jdbcType="VARCHAR" />
+    <result column="PI_TYPE" property="piType" jdbcType="CHAR" />
+    <result column="PI_BARCODE_NUM" property="piBarcodeNum" jdbcType="INTEGER" />
+    <result column="PI_BARCODES" property="piBarcodes" jdbcType="VARCHAR" />
+    <result column="PI_BRAND_INFO" property="piBrandInfo" jdbcType="VARCHAR" />
+    <result column="PI_HANDLERESULT" property="piHandleresult" jdbcType="VARCHAR" />
+    <result column="PI_OK_BARCODE_NUM" property="piOkBarcodeNum" jdbcType="INTEGER" />
+    <result column="PI_FAIL_BARCODE_NUM" property="piFailBarcodeNum" jdbcType="INTEGER" />
+    <result column="PI_SCAN_TIME" property="piScanTime" jdbcType="TIMESTAMP" />
+    <result column="PI_DEMO" property="piDemo" jdbcType="VARCHAR" />
+    <result column="PI_BILL_UUID" property="piBillUuid" jdbcType="VARCHAR" />
+    <result column="PI_SCANNER_TYPE" property="piScannerType" jdbcType="CHAR" />
+    <result column="PI_SCANNER_CODE" property="piScannerCode" jdbcType="VARCHAR" />
+    <result column="PI_HANDLE_START_TIME" property="piHandleStartTime" jdbcType="TIMESTAMP" />
+    <result column="PI_HANDLE_END_TIME" property="piHandleEndTime" jdbcType="TIMESTAMP" />
+    <result column="PI_HANDLE_STATUS" property="piHandleStatus" jdbcType="CHAR" />
+    <result column="PI_BARCODE1D" property="piBarcode1d" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PI_ID, PI_PALLET_ID, PI_TYPE, PI_BARCODE_NUM, PI_BARCODES, PI_BRAND_INFO, PI_HANDLERESULT, 
+    PI_OK_BARCODE_NUM, PI_FAIL_BARCODE_NUM, PI_SCAN_TIME, PI_DEMO, PI_BILL_UUID, PI_SCANNER_TYPE, 
+    PI_SCANNER_CODE, PI_HANDLE_START_TIME, PI_HANDLE_END_TIME, PI_HANDLE_STATUS, PI_BARCODE1D
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from S_PALLET_INFO
+    where PI_ID = #{piId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from S_PALLET_INFO
+    where PI_ID = #{piId,jdbcType=BIGINT}
+  </delete>
+   <!-- 删除条码 -->
+  <delete id="deleteBarcodeInfoByPalletCode" parameterType="com.icss.vdms.scan.bean.SPalletInfoBean" >
+  	delete from S_BARCODE_INFO
+  	where BI_PALLET_CODE  = #{piPalletId,jdbcType=VARCHAR}
+  		  AND BI_BILL_UUID = #{piBillUuid,jdbcType=VARCHAR}
+  </delete>
+  <!-- 根据托盘ID删除托盘 -->
+  <delete id="deletePalletInfoBypiPalletId" parameterType="java.lang.String">
+  	delete from S_PALLET_INFO
+  	where PI_PALLET_ID = #{piPalletId,jdbcType=VARCHAR}
+  </delete>
+  <!-- 根据单据UUID删除托盘信息 -->
+  <delete id="deletePalletInfoByBillUuid" parameterType="java.lang.String">
+  	delete from S_PALLET_INFO
+  	where PI_BILL_UUID = #{piBillUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.scan.bean.SPalletInfoBean" >
+    insert into S_PALLET_INFO (PI_ID, PI_PALLET_ID, PI_TYPE, 
+      PI_BARCODE_NUM, PI_BARCODES, PI_BRAND_INFO, 
+      PI_HANDLERESULT, PI_OK_BARCODE_NUM, PI_FAIL_BARCODE_NUM, 
+      PI_SCAN_TIME, PI_DEMO, PI_BILL_UUID, 
+      PI_SCANNER_TYPE, PI_SCANNER_CODE, PI_HANDLE_START_TIME, 
+      PI_HANDLE_END_TIME, PI_HANDLE_STATUS, PI_BARCODE1D
+      )
+    values (#{piId,jdbcType=BIGINT}, #{piPalletId,jdbcType=VARCHAR}, #{piType,jdbcType=CHAR}, 
+      #{piBarcodeNum,jdbcType=INTEGER}, #{piBarcodes,jdbcType=VARCHAR}, #{piBrandInfo,jdbcType=VARCHAR}, 
+      #{piHandleresult,jdbcType=VARCHAR}, #{piOkBarcodeNum,jdbcType=INTEGER}, #{piFailBarcodeNum,jdbcType=INTEGER}, 
+      #{piScanTime,jdbcType=TIMESTAMP}, #{piDemo,jdbcType=VARCHAR}, #{piBillUuid,jdbcType=VARCHAR}, 
+      #{piScannerType,jdbcType=CHAR}, #{piScannerCode,jdbcType=VARCHAR}, #{piHandleStartTime,jdbcType=TIMESTAMP}, 
+      #{piHandleEndTime,jdbcType=TIMESTAMP}, #{piHandleStatus,jdbcType=CHAR}, #{piBarcode1d,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.vdms.scan.bean.SPalletInfoBean" >
+    insert into S_PALLET_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="piPalletId != null" >
+        PI_PALLET_ID,
+      </if>
+      <if test="piType != null" >
+        PI_TYPE,
+      </if>
+      <if test="piBarcodeNum != null" >
+        PI_BARCODE_NUM,
+      </if>
+      <if test="piBarcodes != null" >
+        PI_BARCODES,
+      </if>
+      <if test="piBrandInfo != null" >
+        PI_BRAND_INFO,
+      </if>
+      <if test="piHandleresult != null" >
+        PI_HANDLERESULT,
+      </if>
+      <if test="piOkBarcodeNum != null" >
+        PI_OK_BARCODE_NUM,
+      </if>
+      <if test="piFailBarcodeNum != null" >
+        PI_FAIL_BARCODE_NUM,
+      </if>
+      <if test="piScanTime != null" >
+        PI_SCAN_TIME,
+      </if>
+      <if test="piDemo != null" >
+        PI_DEMO,
+      </if>
+      <if test="piBillUuid != null" >
+        PI_BILL_UUID,
+      </if>
+      <if test="piScannerType != null" >
+        PI_SCANNER_TYPE,
+      </if>
+      <if test="piScannerCode != null" >
+        PI_SCANNER_CODE,
+      </if>
+      <if test="piHandleStartTime != null" >
+        PI_HANDLE_START_TIME,
+      </if>
+      <if test="piHandleEndTime != null" >
+        PI_HANDLE_END_TIME,
+      </if>
+      <if test="piHandleStatus != null" >
+        PI_HANDLE_STATUS,
+      </if>
+      <if test="piBarcode1d != null" >
+        PI_BARCODE1D,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="piPalletId != null" >
+        #{piPalletId,jdbcType=VARCHAR},
+      </if>
+      <if test="piType != null" >
+        #{piType,jdbcType=CHAR},
+      </if>
+      <if test="piBarcodeNum != null" >
+        #{piBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piBarcodes != null" >
+        #{piBarcodes,jdbcType=VARCHAR},
+      </if>
+      <if test="piBrandInfo != null" >
+        #{piBrandInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="piHandleresult != null" >
+        #{piHandleresult,jdbcType=VARCHAR},
+      </if>
+      <if test="piOkBarcodeNum != null" >
+        #{piOkBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piFailBarcodeNum != null" >
+        #{piFailBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piScanTime != null" >
+        #{piScanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piDemo != null" >
+        #{piDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="piBillUuid != null" >
+        #{piBillUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="piScannerType != null" >
+        #{piScannerType,jdbcType=CHAR},
+      </if>
+      <if test="piScannerCode != null" >
+        #{piScannerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="piHandleStartTime != null" >
+        #{piHandleStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piHandleEndTime != null" >
+        #{piHandleEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piHandleStatus != null" >
+        #{piHandleStatus,jdbcType=CHAR},
+      </if>
+      <if test="piBarcode1d != null" >
+        #{piBarcode1d,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.scan.bean.SPalletInfoBean" >
+    update S_PALLET_INFO
+    <set >
+      <if test="piPalletId != null" >
+        PI_PALLET_ID = #{piPalletId,jdbcType=VARCHAR},
+      </if>
+      <if test="piType != null" >
+        PI_TYPE = #{piType,jdbcType=CHAR},
+      </if>
+      <if test="piBarcodeNum != null" >
+        PI_BARCODE_NUM = #{piBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piBarcodes != null" >
+        PI_BARCODES = #{piBarcodes,jdbcType=VARCHAR},
+      </if>
+      <if test="piBrandInfo != null" >
+        PI_BRAND_INFO = #{piBrandInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="piHandleresult != null" >
+        PI_HANDLERESULT = #{piHandleresult,jdbcType=VARCHAR},
+      </if>
+      <if test="piOkBarcodeNum != null" >
+        PI_OK_BARCODE_NUM = #{piOkBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piFailBarcodeNum != null" >
+        PI_FAIL_BARCODE_NUM = #{piFailBarcodeNum,jdbcType=INTEGER},
+      </if>
+      <if test="piScanTime != null" >
+        PI_SCAN_TIME = #{piScanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piDemo != null" >
+        PI_DEMO = #{piDemo,jdbcType=VARCHAR},
+      </if>
+      <if test="piBillUuid != null" >
+        PI_BILL_UUID = #{piBillUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="piScannerType != null" >
+        PI_SCANNER_TYPE = #{piScannerType,jdbcType=CHAR},
+      </if>
+      <if test="piScannerCode != null" >
+        PI_SCANNER_CODE = #{piScannerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="piHandleStartTime != null" >
+        PI_HANDLE_START_TIME = #{piHandleStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piHandleEndTime != null" >
+        PI_HANDLE_END_TIME = #{piHandleEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piHandleStatus != null" >
+        PI_HANDLE_STATUS = #{piHandleStatus,jdbcType=CHAR},
+      </if>
+      <if test="piBarcode1d != null" >
+        PI_BARCODE1D = #{piBarcode1d,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PI_ID = #{piId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.scan.bean.SPalletInfoBean" >
+    update S_PALLET_INFO
+    set PI_PALLET_ID = #{piPalletId,jdbcType=VARCHAR},
+      PI_TYPE = #{piType,jdbcType=CHAR},
+      PI_BARCODE_NUM = #{piBarcodeNum,jdbcType=INTEGER},
+      PI_BARCODES = #{piBarcodes,jdbcType=VARCHAR},
+      PI_BRAND_INFO = #{piBrandInfo,jdbcType=VARCHAR},
+      PI_HANDLERESULT = #{piHandleresult,jdbcType=VARCHAR},
+      PI_OK_BARCODE_NUM = #{piOkBarcodeNum,jdbcType=INTEGER},
+      PI_FAIL_BARCODE_NUM = #{piFailBarcodeNum,jdbcType=INTEGER},
+      PI_SCAN_TIME = #{piScanTime,jdbcType=TIMESTAMP},
+      PI_DEMO = #{piDemo,jdbcType=VARCHAR},
+      PI_BILL_UUID = #{piBillUuid,jdbcType=VARCHAR},
+      PI_SCANNER_TYPE = #{piScannerType,jdbcType=CHAR},
+      PI_SCANNER_CODE = #{piScannerCode,jdbcType=VARCHAR},
+      PI_HANDLE_START_TIME = #{piHandleStartTime,jdbcType=TIMESTAMP},
+      PI_HANDLE_END_TIME = #{piHandleEndTime,jdbcType=TIMESTAMP},
+      PI_HANDLE_STATUS = #{piHandleStatus,jdbcType=CHAR},
+      PI_BARCODE1D = #{piBarcode1d,jdbcType=VARCHAR}
+    where PI_ID = #{piId,jdbcType=BIGINT}
+  </update>
+</mapper>

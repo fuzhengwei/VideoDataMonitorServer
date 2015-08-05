@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.bp.dao.DsaBPDao" >
+	
+	<!-- 商业打码基础数据映射 -->
+	<resultMap id="DsaBPInfoMap" type="com.icss.vdms.webservice.dsa.bean.DsaBPInfoBean" >
+		<result column="OI_SLINE_CODE" property="oiSlineCode" jdbcType="VARCHAR" />
+		<result column="OI_SLINE_NAME" property="oiSlineName" jdbcType="VARCHAR" />
+		<result column="OI_PRINT_NUM" property="oiPrintNum" jdbcType="INTEGER" />	
+	</resultMap>
+	
+	<!-- 商业打码详情数据映射 -->
+	<resultMap id="DsaBPDetailMap" type="com.icss.vdms.webservice.dsa.bean.DsaBPDetailBean">
+		<result column="OI_SLINE_CODE" property="oiSlineCode" jdbcType="VARCHAR" />
+		<result column="OI_ALL_NUM" property="oiAllNum" jdbcType="INTEGER" />
+		<result column="OI_ALL_NUM1" property="oiPrintNum1" jdbcType="INTEGER" />
+		<result column="OI_ALL_NUM2" property="oiPrintNum2" jdbcType="INTEGER" />	
+		<result column="SEARCHSTARTTIME" property="searchStartTime" jdbcType="TIMESTAMP" />
+		<result column="SEARCHENDTIME" property="searchEndTime" jdbcType="TIMESTAMP" />
+		<result column="OI_START_TIME" property="oiStartTime" jdbcType="TIMESTAMP" />
+		<collection property="dsaBPDetailBarCodeList" ofType="com.icss.vdms.webservice.dsa.bean.DsaBPDetailBarCodeBean">
+			<result column="OB_BCIG_BARCODE" property="obBcigBarcode" jdbcType="CHAR" />
+		</collection>
+	</resultMap>
+	
+	<!-- 汇总分拣线编号，分拣线名称，在截至时间内打码量 -->
+	<select id="selectDsaBPInfoList" resultMap="DsaBPInfoMap" parameterType="java.lang.String">
+		<![CDATA[ 
+		SELECT  OI_SLINE_CODE,
+		        OI_SLINE_NAME,
+		        SUM(OI_PRINT_NUM) OI_PRINT_NUM
+		FROM BP_ORDER_INFO
+		WHERE OI_SORT_DATE = (SELECT MAX(OI_SORT_DATE)
+		                       FROM BP_ORDER_INFO
+		                       WHERE OI_START_TIME < #{searchEndTime})        
+		       AND OI_START_TIME <= #{searchEndTime}
+		GROUP BY OI_SLINE_CODE,OI_SLINE_NAME
+		]]>
+	</select>
+	
+	<!-- 汇总商业打码指定打码机指定时间内打码量 -->
+	<select id="selectDsaBPDetailList" resultMap="DsaBPDetailMap" parameterType="com.icss.vdms.webservice.dsa.agreement.DsaSearchMsgAgreement">
+		<![CDATA[ 
+			SELECT  A.OI_SLINE_CODE,
+			        A.OI_SLINE_NAME,
+			        (SELECT SUM(OI_ALL_NUM) FROM BP_ORDER_INFO WHERE OI_SLINE_CODE = A.OI_SLINE_CODE AND A.OI_SORT_DATE = C.OI_SORT_DATE) AS OI_ALL_NUM,
+			        (SELECT SUM(OI_PRINT_NUM) FROM BP_ORDER_INFO WHERE OI_SLINE_CODE = A.OI_SLINE_CODE AND A.OI_SORT_DATE = C.OI_SORT_DATE AND OI_START_TIME < #{searchStartTime}) AS OI_PRINT_NUM_1, 
+			        (SELECT SUM(OI_PRINT_NUM) FROM BP_ORDER_INFO WHERE OI_SLINE_CODE = A.OI_SLINE_CODE AND A.OI_SORT_DATE = C.OI_SORT_DATE AND OI_START_TIME < #{searchEndTime}) AS OI_PRINT_NUM_2, 
+			        B.OB_BCIG_BARCODE,
+			        A.OI_SORT_DATE
+			FROM 
+	             (SELECT MAX(OI_SORT_DATE) AS OI_SORT_DATE
+	              FROM BP_ORDER_INFO
+	              WHERE OI_START_TIME <= #{searchEndTime}
+	             ) C, BP_ORDER_INFO A JOIN BP_ORDER_BARCODE B ON A.OI_UUID = B.OB_UUID
+			WHERE A.OI_SLINE_CODE = #{searchId}
+	              AND A.OI_SORT_DATE = C.OI_SORT_DATE
+	              AND A.OI_START_TIME BETWEEN #{searchStartTime} AND #{searchEndTime}
+		]]>
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.pp.dao.PPCigInfoDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.pp.bean.PPCigInfoBean" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="PPID" property="ppid" jdbcType="BIGINT" />
+    <result column="PRINTERID" property="printerid" jdbcType="VARCHAR" />
+    <result column="BALUUID" property="baluuid" jdbcType="VARCHAR" />
+    <result column="CIGBRAND" property="cigbrand" jdbcType="CHAR" />
+    <result column="CIGBRANDCODE" property="cigbrandcode" jdbcType="CHAR" />
+    <result column="FACTCODE" property="factcode" jdbcType="CHAR" />
+    <result column="PRODUCEDATE" property="producedate" jdbcType="TIMESTAMP" />
+    <result column="NATURALDATE" property="naturaldate" jdbcType="TIMESTAMP" />
+    <result column="TRADETYPE" property="tradetype" jdbcType="SMALLINT" />
+    <result column="SERIALNUM" property="serialnum" jdbcType="CHAR" />
+    <result column="PLANPRODUCEDATE" property="planproducedate" jdbcType="TIMESTAMP" />
+    <result column="BARCODEFLAG" property="barcodeflag" jdbcType="CHAR" />
+    <result column="PRINTSTATUS" property="printstatus" jdbcType="SMALLINT" />
+    <result column="SENDBACKFLAG" property="sendbackflag" jdbcType="SMALLINT" />
+    <result column="SCANSTATE" property="scanstate" jdbcType="SMALLINT" />
+    <result column="PRODUCTINFO" property="productinfo" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PPID, PRINTERID, BALUUID, CIGBRAND, FACTCODE, PRODUCEDATE, NATURALDATE, TRADETYPE, 
+    SERIALNUM, PLANPRODUCEDATE, BARCODEFLAG, PRINTSTATUS, SENDBACKFLAG, SCANSTATE, PRODUCTINFO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from PP_CIGINFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from PP_CIGINFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean" >
+    insert into PP_CIGINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ppid != null" >
+        PPID,
+      </if>
+      <if test="printerid != null" >
+        PRINTERID,
+      </if>
+      <if test="baluuid != null" >
+        BALUUID,
+      </if>
+      <if test="cigbrand != null" >
+        CIGBRAND,
+      </if>
+      <if test="cigbrandcode != null">
+      	CIGBRANDCODE,
+      </if>
+      <if test="factcode != null" >
+        FACTCODE,
+      </if>
+      <if test="producedate != null" >
+        PRODUCEDATE,
+      </if>
+      <if test="naturaldate != null" >
+        NATURALDATE,
+      </if>
+      <if test="tradetype != null" >
+        TRADETYPE,
+      </if>
+      <if test="serialnum != null" >
+        SERIALNUM,
+      </if>
+      <if test="planproducedate != null" >
+        PLANPRODUCEDATE,
+      </if>
+      <if test="barcodeflag != null" >
+        BARCODEFLAG,
+      </if>
+      <if test="printstatus != null" >
+        PRINTSTATUS,
+      </if>
+      <if test="sendbackflag != null" >
+        SENDBACKFLAG,
+      </if>
+      <if test="scanstate != null" >
+        SCANSTATE,
+      </if>
+      <if test="productinfo != null" >
+        PRODUCTINFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ppid != null" >
+        #{ppid,jdbcType=BIGINT},
+      </if>
+      <if test="printerid != null" >
+        #{printerid,jdbcType=VARCHAR},
+      </if>
+      <if test="baluuid != null" >
+        #{baluuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cigbrand != null" >
+        #{cigbrand,jdbcType=CHAR},
+      </if>
+      <if test="cigbrandcode != null">
+      	#{cigbrandcode,jdbcType=CHAR},
+      </if>
+      <if test="factcode != null" >
+        #{factcode,jdbcType=CHAR},
+      </if>
+      <if test="producedate != null" >
+        #{producedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="naturaldate != null" >
+        #{naturaldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradetype != null" >
+        #{tradetype,jdbcType=SMALLINT},
+      </if>
+      <if test="serialnum != null" >
+        #{serialnum,jdbcType=CHAR},
+      </if>
+      <if test="planproducedate != null" >
+        #{planproducedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barcodeflag != null" >
+        #{barcodeflag,jdbcType=CHAR},
+      </if>
+      <if test="printstatus != null" >
+        #{printstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="sendbackflag != null" >
+        #{sendbackflag,jdbcType=SMALLINT},
+      </if>
+      <if test="scanstate != null" >
+        #{scanstate,jdbcType=SMALLINT},
+      </if>
+      <if test="productinfo != null" >
+        #{productinfo,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询数据是否存在 -->
+  <select id="selectCigInfoCountByPpidAndPrintId" resultType="java.lang.Integer" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean">
+  	SELECT COUNT(ID) FROM PP_CIGINFO WHERE PRINTERID = #{printerid} AND PPID = #{ppid}
+  </select>
+  
+  <!-- 更新码【计划结转后更新】 -->
+  <update id="updateBalUUIDByPPId" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean">
+  	UPDATE PP_CIGINFO SET BALUUID = #{baluuid} WHERE PPID = #{ppid}
+  </update>
+  
+  <!-- 更新打码状态 [打码机ID，客户端唯一自动生成id]-->
+  <update id="updatePrintStatusByPPIdAndPrinterId" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean">
+  	UPDATE PP_CIGINFO SET PRINTSTATUS = #{printstatus} WHERE PRINTERID = #{printerid} AND PPID = #{ppid}
+  </update>
+  
+  <!-- 更新回送状态 [打码机ID，客户端唯一自动生成id]-->
+  <update id="updateSendbackflagByPPIdAndPrinterId" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean">
+  	UPDATE PP_CIGINFO SET SENDBACKFLAG = #{sendbackflag} WHERE PRINTERID = #{printerid} AND PPID = #{ppid}
+  </update>
+  
+  <!-- 根据不同字段插入信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean" >
+    update PP_CIGINFO
+    <set >
+      <if test="ppid != null" >
+        PPID = #{ppid,jdbcType=BIGINT},
+      </if>
+      <if test="printerid != null" >
+        PRINTERID = #{printerid,jdbcType=VARCHAR},
+      </if>
+      <if test="baluuid != null" >
+        BALUUID = #{baluuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cigbrand != null" >
+        CIGBRAND = #{cigbrand,jdbcType=CHAR},
+      </if>
+      <if test="factcode != null" >
+        FACTCODE = #{factcode,jdbcType=CHAR},
+      </if>
+      <if test="producedate != null" >
+        PRODUCEDATE = #{producedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="naturaldate != null" >
+        NATURALDATE = #{naturaldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradetype != null" >
+        TRADETYPE = #{tradetype,jdbcType=SMALLINT},
+      </if>
+      <if test="serialnum != null" >
+        SERIALNUM = #{serialnum,jdbcType=CHAR},
+      </if>
+      <if test="planproducedate != null" >
+        PLANPRODUCEDATE = #{planproducedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barcodeflag != null" >
+        BARCODEFLAG = #{barcodeflag,jdbcType=CHAR},
+      </if>
+      <if test="printstatus != null" >
+        PRINTSTATUS = #{printstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="sendbackflag != null" >
+        SENDBACKFLAG = #{sendbackflag,jdbcType=SMALLINT},
+      </if>
+      <if test="scanstate != null" >
+        SCANSTATE = #{scanstate,jdbcType=SMALLINT},
+      </if>
+      <if test="productinfo != null" >
+        PRODUCTINFO = #{productinfo,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.pp.bean.PPCigInfoBean" >
+    update PP_CIGINFO
+    set PPID = #{ppid,jdbcType=BIGINT},
+      PRINTERID = #{printerid,jdbcType=VARCHAR},
+      BALUUID = #{baluuid,jdbcType=VARCHAR},
+      CIGBRAND = #{cigbrand,jdbcType=CHAR},
+      FACTCODE = #{factcode,jdbcType=CHAR},
+      PRODUCEDATE = #{producedate,jdbcType=TIMESTAMP},
+      NATURALDATE = #{naturaldate,jdbcType=TIMESTAMP},
+      TRADETYPE = #{tradetype,jdbcType=SMALLINT},
+      SERIALNUM = #{serialnum,jdbcType=CHAR},
+      PLANPRODUCEDATE = #{planproducedate,jdbcType=TIMESTAMP},
+      BARCODEFLAG = #{barcodeflag,jdbcType=CHAR},
+      PRINTSTATUS = #{printstatus,jdbcType=SMALLINT},
+      SENDBACKFLAG = #{sendbackflag,jdbcType=SMALLINT},
+      SCANSTATE = #{scanstate,jdbcType=SMALLINT},
+      PRODUCTINFO = #{productinfo,jdbcType=CHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

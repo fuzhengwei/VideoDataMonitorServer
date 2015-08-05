@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.sys.dao.VdmsClientDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.sys.bean.VdmsClientBean" >
+    <id column="C_ID" property="cId" jdbcType="BIGINT" />
+    <result column="C_UUID" property="cUuid" jdbcType="VARCHAR" />
+    <result column="C_IP" property="cIp" jdbcType="VARCHAR" />
+    <result column="C_DATA_SOURCE" property="cDataSource" jdbcType="CHAR" />
+    <result column="C_DATA_NUMBER" property="cDataNumber" jdbcType="VARCHAR" />
+    <result column="C_DATA_DESCRIPTION" property="cDataDescription" jdbcType="VARCHAR" />
+    <result column="C_CREATE_DATE" property="cCreateDate" jdbcType="TIMESTAMP" />
+    <result column="C_USE_STATE" property="cUseState" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    C_ID, C_UUID, C_IP, C_DATA_SOURCE, C_DATA_NUMBER, C_CREATE_DATE, C_USE_STATE
+  </sql>
+
+  <!-- 根据需求添加 -->
+  
+  <!-- 获取客户端注册列表 -->
+  <select id="selectModelList" resultMap="BaseResultMap">
+  	SELECT
+	    C_ID,
+	    C_UUID,
+	    C_IP,
+	    C_DATA_SOURCE,
+	    C_DATA_NUMBER,
+	    C_DATA_DESCRIPTION,
+	    C_CREATE_DATE,
+	    C_USE_STATE
+	FROM
+		VDMS_CLIENT
+	ORDER BY C_DATA_SOURCE
+  </select>
+  
+  <!-- 获取表数据总量 -->
+  <select id="selectModelCount" resultType="Integer">
+  	SELECT COUNT(C_ID) FROM VDMS_CLIENT 
+  </select>
+  
+  <!-- 新增客户端信息 -->
+  <insert id="insertClient" parameterType="com.icss.vdms.sys.bean.VdmsClientBean">
+  	INSERT INTO 
+	  	VDMS_CLIENT ( 
+			        C_UUID,
+			        C_IP,
+			        C_DATA_SOURCE,
+			        C_DATA_NUMBER,
+			        C_CREATE_DATE,
+			        C_USE_STATE,
+			        C_DATA_DESCRIPTION)
+	    VALUES 
+	    (
+	     #{cUuid}, 
+	     #{cIp}, 
+	     #{cDataSource}, 
+	     #{cDataNumber}, 
+	     CURRENT TIMESTAMP, 
+	     #{cUseState},
+	     #{cDataDescription})
+  </insert>
+  
+  <!-- 自动生成 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from VDMS_CLIENT
+    where C_ID = #{cId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from VDMS_CLIENT
+    where C_ID = #{cId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.icss.vdms.sys.bean.VdmsClientBean" >
+    insert into VDMS_CLIENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        C_ID,
+      </if>
+      <if test="cUuid != null" >
+        C_UUID,
+      </if>
+      <if test="cIp != null" >
+        C_IP,
+      </if>
+      <if test="cDataSource != null" >
+        C_DATA_SOURCE,
+      </if>
+      <if test="cDataNumber != null" >
+        C_DATA_NUMBER,
+      </if>
+      <if test="cCreateDate != null" >
+        C_CREATE_DATE,
+      </if>
+      <if test="cUseState != null" >
+        C_USE_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="cUuid != null" >
+        #{cUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cIp != null" >
+        #{cIp,jdbcType=VARCHAR},
+      </if>
+      <if test="cDataSource != null" >
+        #{cDataSource,jdbcType=CHAR},
+      </if>
+      <if test="cDataNumber != null" >
+        #{cDataNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cCreateDate != null" >
+        #{cCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUseState != null" >
+        #{cUseState,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.sys.bean.VdmsClientBean" >
+    update VDMS_CLIENT
+    <set >
+      <if test="cUuid != null" >
+        C_UUID = #{cUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="cIp != null" >
+        C_IP = #{cIp,jdbcType=VARCHAR},
+      </if>
+      <if test="cDataSource != null" >
+        C_DATA_SOURCE = #{cDataSource,jdbcType=CHAR},
+      </if>
+      <if test="cDataNumber != null" >
+        C_DATA_NUMBER = #{cDataNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cCreateDate != null" >
+        C_CREATE_DATE = #{cCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUseState != null" >
+        C_USE_STATE = #{cUseState,jdbcType=CHAR},
+      </if>
+    </set>
+    where C_ID = #{cId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.sys.bean.VdmsClientBean" >
+    update VDMS_CLIENT
+    set C_UUID = #{cUuid,jdbcType=VARCHAR},
+      C_IP = #{cIp,jdbcType=VARCHAR},
+      C_DATA_SOURCE = #{cDataSource,jdbcType=CHAR},
+      C_DATA_NUMBER = #{cDataNumber,jdbcType=VARCHAR},
+      C_CREATE_DATE = #{cCreateDate,jdbcType=TIMESTAMP},
+      C_USE_STATE = #{cUseState,jdbcType=CHAR}
+    where C_ID = #{cId,jdbcType=BIGINT}
+  </update>
+</mapper>

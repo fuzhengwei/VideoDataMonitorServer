@@ -1,0 +1,29 @@
+=============
+2015年7月24日 AM
+=============
+--清空工业打码表
+
+DELETE FROM PP_ARRANGE;
+DELETE FROM PP_CIGINFO;
+===============================================================================
+=============
+2015年7月15日 AM
+=============
+--清空扫描表 
+
+DELETE FROM S_BARCODE_INFO;
+DELETE FROM S_BILL_BASE;
+DELETE FROM S_BILL_DETAIL;
+DELETE FROM S_PALLET_INFO;
+===============================================================================
+=============
+2015年4月16日 PM
+=============
+--清空打码表
+
+DELETE FROM BP_BATCH;
+DELETE FROM BP_DIST_LINE;
+DELETE FROM BP_ORDER_BARCODE;
+DELETE FROM BP_ORDER_CIG_INFO;
+DELETE FROM BP_ORDER_INFO;
+===============================================================================

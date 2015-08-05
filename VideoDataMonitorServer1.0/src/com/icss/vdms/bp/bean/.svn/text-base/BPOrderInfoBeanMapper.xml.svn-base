@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.bp.dao.BPOrderInfoDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.bp.bean.BPOrderInfoBean" >
+    <id column="OI_ID" property="oiId" jdbcType="BIGINT" />
+    <result column="OI_UUID" property="oiUuid" jdbcType="VARCHAR" />
+    <result column="OI_B_CODE" property="oiBCode" jdbcType="VARCHAR" />
+    <result column="OI_B_TYPE" property="oiBType" jdbcType="CHAR" />
+    <result column="OI_ISCHANGE_SLINE" property="oiIschangeSline" jdbcType="CHAR" />
+    <result column="OI_DL_CODE" property="oiDlCode" jdbcType="VARCHAR" />
+    <result column="OI_DL_NAME" property="oiDlName" jdbcType="VARCHAR" />
+    <result column="OI_SLINE_CODE" property="oiSlineCode" jdbcType="VARCHAR" />
+    <result column="OI_SLINE_NAME" property="oiSlineName" jdbcType="VARCHAR" />
+    <result column="OI_SEQUENCE" property="oiSequence" jdbcType="INTEGER" />
+    <result column="OI_CODE" property="oiCode" jdbcType="VARCHAR" />
+    <result column="OI_RETAILER_CODE" property="oiRetailerCode" jdbcType="CHAR" />
+    <result column="OI_RETAILER_NAME" property="oiRetailerName" jdbcType="VARCHAR" />
+    <result column="OI_DATE" property="oiDate" jdbcType="TIMESTAMP" />
+    <result column="OI_SORT_DATE" property="oiSortDate" jdbcType="TIMESTAMP" />
+    <result column="OI_CIG_FLAG" property="oiCigFlag" jdbcType="CHAR" />
+    <result column="OI_ALL_NUM" property="oiAllNum" jdbcType="INTEGER" />
+    <result column="OI_NORMAL_NUM" property="oiNormalNum" jdbcType="INTEGER" />
+    <result column="OI_CUSTOM_INFO" property="oiCustomInfo" jdbcType="CHAR" />
+    <result column="OI_CHECK_NUM" property="oiCheckNum" jdbcType="INTEGER" />
+    <result column="OI_SEND_NUM" property="oiSendNum" jdbcType="INTEGER" />
+    <result column="OI_PRINT_NUM" property="oiPrintNum" jdbcType="INTEGER" />
+    <result column="OI_RESEL_ORDER_NUM" property="oiReselOrderNum" jdbcType="INTEGER" />
+    <result column="OI_START_TIME" property="oiStartTime" jdbcType="TIMESTAMP" />
+    <result column="OI_END_TIME" property="oiEndTime" jdbcType="TIMESTAMP" />
+    <result column="OI_STATE" property="oiState" jdbcType="VARCHAR" />
+    <result column="OI_SEND_STATE" property="oiSendState" jdbcType="CHAR" />
+    <result column="OI_SELF_UPDATE_TIME" property="oiSelfUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="OI_SUB_UPDATE_TIME" property="oiSubUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="OI_B_UUID" property="oiBUuid" jdbcType="VARCHAR" />
+    <result column="OI_DL_UUID" property="oiDlUuid" jdbcType="VARCHAR" />
+    <result column="OI_SELF_SEQUENCE" property="oiSelfSequence" jdbcType="INTEGER" />
+    <result column="OI_ALL_NUM1" property="oiAllNum1" jdbcType="DECIMAL" />
+    <result column="OI_SELF_BATCH_SEQUENCE" property="oiSelfBatchSequence" jdbcType="INTEGER" />
+    <result column="OI_TOTAL_SEQUENCE" property="oiTotalSequence" jdbcType="BIGINT" />
+    <result column="OI_ILLEGALITY_NUM" property="oiIllegalityNum" jdbcType="INTEGER" />
+    <result column="OI_SECOND_NUM" property="oiSecondNum" jdbcType="INTEGER" />
+    <result column="OI_COMMERCE_CODE" property="oiCommerceCode" jdbcType="VARCHAR" />
+    <result column="OI_COMMERCE_NAME" property="oiCommerceName" jdbcType="VARCHAR" />
+    <result column="OI_LOCAL_START_TIME" property="oiLocalStartTime" jdbcType="TIMESTAMP" />
+    <result column="OI_STANDARD_START_TIME" property="oiStandardStartTime" jdbcType="TIMESTAMP" />
+    <result column="OI_MONITOR_STATUS" property="oiMonitorStatus" jdbcType="VARCHAR" />
+    <result column="OI_TIME_MONITOR_STATUS" property="oiTimeMonitorStatus" jdbcType="VARCHAR" />
+    <result column="OI_STANDARD_TIME_TYPE" property="oiStandardTimeType" jdbcType="VARCHAR" />
+    <result column="OI_IN_FEED_STATE" property="oiInFeedState" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    OI_ID, OI_UUID, OI_B_CODE, OI_B_TYPE, OI_ISCHANGE_SLINE, OI_DL_CODE, OI_DL_NAME, 
+    OI_SLINE_CODE, OI_SLINE_NAME, OI_SEQUENCE, OI_CODE, OI_RETAILER_CODE, OI_RETAILER_NAME, 
+    OI_DATE, OI_SORT_DATE, OI_CIG_FLAG, OI_ALL_NUM, OI_NORMAL_NUM, OI_CUSTOM_INFO, OI_CHECK_NUM, 
+    OI_SEND_NUM, OI_PRINT_NUM, OI_RESEL_ORDER_NUM, OI_START_TIME, OI_END_TIME, OI_STATE, 
+    OI_SEND_STATE, OI_SELF_UPDATE_TIME, OI_SUB_UPDATE_TIME, OI_B_UUID, OI_DL_UUID, OI_SELF_SEQUENCE, 
+    OI_ALL_NUM1, OI_SELF_BATCH_SEQUENCE, OI_TOTAL_SEQUENCE, OI_ILLEGALITY_NUM, OI_SECOND_NUM, 
+    OI_COMMERCE_CODE, OI_COMMERCE_NAME, OI_LOCAL_START_TIME, OI_STANDARD_START_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BP_ORDER_INFO
+    where OI_ID = #{oiId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BP_ORDER_INFO
+    where OI_ID = #{oiId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.bp.bean.BPOrderInfoBean" >
+    insert into BP_ORDER_INFO (OI_ID, OI_UUID, OI_B_CODE, 
+      OI_B_TYPE, OI_ISCHANGE_SLINE, OI_DL_CODE, 
+      OI_DL_NAME, OI_SLINE_CODE, OI_SLINE_NAME, 
+      OI_SEQUENCE, OI_CODE, OI_RETAILER_CODE, 
+      OI_RETAILER_NAME, OI_DATE, OI_SORT_DATE, 
+      OI_CIG_FLAG, OI_ALL_NUM, OI_NORMAL_NUM, 
+      OI_CUSTOM_INFO, OI_CHECK_NUM, OI_SEND_NUM, 
+      OI_PRINT_NUM, OI_RESEL_ORDER_NUM, OI_START_TIME, 
+      OI_END_TIME, OI_STATE, OI_SEND_STATE, 
+      OI_SELF_UPDATE_TIME, OI_SUB_UPDATE_TIME, 
+      OI_B_UUID, OI_DL_UUID, OI_SELF_SEQUENCE, 
+      OI_ALL_NUM1, OI_SELF_BATCH_SEQUENCE, OI_TOTAL_SEQUENCE, 
+      OI_ILLEGALITY_NUM, OI_SECOND_NUM, OI_COMMERCE_CODE, 
+      OI_COMMERCE_NAME, OI_LOCAL_START_TIME, OI_STANDARD_START_TIME
+      )
+    values (#{oiId,jdbcType=BIGINT}, #{oiUuid,jdbcType=VARCHAR}, #{oiBCode,jdbcType=VARCHAR}, 
+      #{oiBType,jdbcType=CHAR}, #{oiIschangeSline,jdbcType=CHAR}, #{oiDlCode,jdbcType=VARCHAR}, 
+      #{oiDlName,jdbcType=VARCHAR}, #{oiSlineCode,jdbcType=VARCHAR}, #{oiSlineName,jdbcType=VARCHAR}, 
+      #{oiSequence,jdbcType=INTEGER}, #{oiCode,jdbcType=VARCHAR}, #{oiRetailerCode,jdbcType=CHAR}, 
+      #{oiRetailerName,jdbcType=VARCHAR}, #{oiDate,jdbcType=TIMESTAMP}, #{oiSortDate,jdbcType=TIMESTAMP}, 
+      #{oiCigFlag,jdbcType=CHAR}, #{oiAllNum,jdbcType=INTEGER}, #{oiNormalNum,jdbcType=INTEGER}, 
+      #{oiCustomInfo,jdbcType=CHAR}, #{oiCheckNum,jdbcType=INTEGER}, #{oiSendNum,jdbcType=INTEGER}, 
+      #{oiPrintNum,jdbcType=INTEGER}, #{oiReselOrderNum,jdbcType=INTEGER}, #{oiStartTime,jdbcType=TIMESTAMP}, 
+      #{oiEndTime,jdbcType=TIMESTAMP}, #{oiState,jdbcType=VARCHAR}, #{oiSendState,jdbcType=CHAR}, 
+      #{oiSelfUpdateTime,jdbcType=TIMESTAMP}, #{oiSubUpdateTime,jdbcType=TIMESTAMP}, 
+      #{oiBUuid,jdbcType=VARCHAR}, #{oiDlUuid,jdbcType=VARCHAR}, #{oiSelfSequence,jdbcType=INTEGER}, 
+      #{oiAllNum1,jdbcType=DECIMAL}, #{oiSelfBatchSequence,jdbcType=INTEGER}, #{oiTotalSequence,jdbcType=BIGINT}, 
+      #{oiIllegalityNum,jdbcType=INTEGER}, #{oiSecondNum,jdbcType=INTEGER}, #{oiCommerceCode,jdbcType=VARCHAR}, 
+      #{oiCommerceName,jdbcType=VARCHAR}, #{oiLocalStartTime,jdbcType=TIMESTAMP}, #{oiStandardStartTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.vdms.bp.bean.BPOrderInfoBean" >
+    insert into BP_ORDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oiUuid != null" >
+        OI_UUID,
+      </if>
+      <if test="oiBCode != null" >
+        OI_B_CODE,
+      </if>
+      <if test="oiBType != null" >
+        OI_B_TYPE,
+      </if>
+      <if test="oiIschangeSline != null" >
+        OI_ISCHANGE_SLINE,
+      </if>
+      <if test="oiDlCode != null" >
+        OI_DL_CODE,
+      </if>
+      <if test="oiDlName != null" >
+        OI_DL_NAME,
+      </if>
+      <if test="oiSlineCode != null" >
+        OI_SLINE_CODE,
+      </if>
+      <if test="oiSlineName != null" >
+        OI_SLINE_NAME,
+      </if>
+      <if test="oiSequence != null" >
+        OI_SEQUENCE,
+      </if>
+      <if test="oiCode != null" >
+        OI_CODE,
+      </if>
+      <if test="oiRetailerCode != null" >
+        OI_RETAILER_CODE,
+      </if>
+      <if test="oiRetailerName != null" >
+        OI_RETAILER_NAME,
+      </if>
+      <if test="oiDate != null" >
+        OI_DATE,
+      </if>
+      <if test="oiSortDate != null" >
+        OI_SORT_DATE,
+      </if>
+      <if test="oiCigFlag != null" >
+        OI_CIG_FLAG,
+      </if>
+      <if test="oiAllNum != null" >
+        OI_ALL_NUM,
+      </if>
+      <if test="oiNormalNum != null" >
+        OI_NORMAL_NUM,
+      </if>
+      <if test="oiCustomInfo != null" >
+        OI_CUSTOM_INFO,
+      </if>
+      <if test="oiCheckNum != null" >
+        OI_CHECK_NUM,
+      </if>
+      <if test="oiSendNum != null" >
+        OI_SEND_NUM,
+      </if>
+      <if test="oiPrintNum != null" >
+        OI_PRINT_NUM,
+      </if>
+      <if test="oiReselOrderNum != null" >
+        OI_RESEL_ORDER_NUM,
+      </if>
+      <if test="oiStartTime != null" >
+        OI_START_TIME,
+      </if>
+      <if test="oiEndTime != null" >
+        OI_END_TIME,
+      </if>
+      <if test="oiState != null" >
+        OI_STATE,
+      </if>
+      <if test="oiSendState != null" >
+        OI_SEND_STATE,
+      </if>
+      <if test="oiSelfUpdateTime != null" >
+        OI_SELF_UPDATE_TIME,
+      </if>
+      <if test="oiSubUpdateTime != null" >
+        OI_SUB_UPDATE_TIME,
+      </if>
+      <if test="oiBUuid != null" >
+        OI_B_UUID,
+      </if>
+      <if test="oiDlUuid != null" >
+        OI_DL_UUID,
+      </if>
+      <if test="oiSelfSequence != null" >
+        OI_SELF_SEQUENCE,
+      </if>
+      <if test="oiAllNum1 != null" >
+        OI_ALL_NUM1,
+      </if>
+      <if test="oiSelfBatchSequence != null" >
+        OI_SELF_BATCH_SEQUENCE,
+      </if>
+      <if test="oiTotalSequence != null" >
+        OI_TOTAL_SEQUENCE,
+      </if>
+      <if test="oiIllegalityNum != null" >
+        OI_ILLEGALITY_NUM,
+      </if>
+      <if test="oiSecondNum != null" >
+        OI_SECOND_NUM,
+      </if>
+      <if test="oiCommerceCode != null" >
+        OI_COMMERCE_CODE,
+      </if>
+      <if test="oiCommerceName != null" >
+        OI_COMMERCE_NAME,
+      </if>
+      <if test="oiLocalStartTime != null" >
+        OI_LOCAL_START_TIME,
+      </if>
+      <if test="oiStandardStartTime != null" >
+        OI_STANDARD_START_TIME,
+      </if>
+      <if test="oiMonitorStatus != null" >
+        OI_MONITOR_STATUS,
+      </if>
+      <if test="oiTimeMonitorStatus != null" >
+        OI_TIME_MONITOR_STATUS,
+      </if>
+      <if test="oiStandardTimeType != null" >
+        OI_STANDARD_TIME_TYPE,
+      </if>
+      <if test="oiInFeedState != null" >
+        OI_IN_FEED_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oiUuid != null" >
+        #{oiUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiBCode != null" >
+        #{oiBCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiBType != null" >
+        #{oiBType,jdbcType=CHAR},
+      </if>
+      <if test="oiIschangeSline != null" >
+        #{oiIschangeSline,jdbcType=CHAR},
+      </if>
+      <if test="oiDlCode != null" >
+        #{oiDlCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDlName != null" >
+        #{oiDlName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSlineCode != null" >
+        #{oiSlineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSlineName != null" >
+        #{oiSlineName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSequence != null" >
+        #{oiSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiCode != null" >
+        #{oiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiRetailerCode != null" >
+        #{oiRetailerCode,jdbcType=CHAR},
+      </if>
+      <if test="oiRetailerName != null" >
+        #{oiRetailerName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDate != null" >
+        #{oiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiSortDate != null" >
+        #{oiSortDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiCigFlag != null" >
+        #{oiCigFlag,jdbcType=CHAR},
+      </if>
+      <if test="oiAllNum != null" >
+        #{oiAllNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiNormalNum != null" >
+        #{oiNormalNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiCustomInfo != null" >
+        #{oiCustomInfo,jdbcType=CHAR},
+      </if>
+      <if test="oiCheckNum != null" >
+        #{oiCheckNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiSendNum != null" >
+        #{oiSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiPrintNum != null" >
+        #{oiPrintNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiReselOrderNum != null" >
+        #{oiReselOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiStartTime != null" >
+        #{oiStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiEndTime != null" >
+        #{oiEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiState != null" >
+        #{oiState,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSendState != null" >
+        #{oiSendState,jdbcType=CHAR},
+      </if>
+      <if test="oiSelfUpdateTime != null" >
+        #{oiSelfUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiSubUpdateTime != null" >
+        #{oiSubUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiBUuid != null" >
+        #{oiBUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDlUuid != null" >
+        #{oiDlUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSelfSequence != null" >
+        #{oiSelfSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiAllNum1 != null" >
+        #{oiAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="oiSelfBatchSequence != null" >
+        #{oiSelfBatchSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiTotalSequence != null" >
+        #{oiTotalSequence,jdbcType=BIGINT},
+      </if>
+      <if test="oiIllegalityNum != null" >
+        #{oiIllegalityNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiSecondNum != null" >
+        #{oiSecondNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiCommerceCode != null" >
+        #{oiCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiCommerceName != null" >
+        #{oiCommerceName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiLocalStartTime != null" >
+        #{oiLocalStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiStandardStartTime != null" >
+        #{oiStandardStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiMonitorStatus != null" >
+        #{oiMonitorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="oiTimeMonitorStatus != null" >
+        #{oiTimeMonitorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="oiStandardTimeType != null" >
+        #{oiStandardTimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="oiInFeedState != null" >
+        #{oiInFeedState,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateOrderStateByUUID" parameterType="com.icss.vdms.bp.bean.VOrderCodeStateBean">
+  	UPDATE BP_ORDER_INFO 
+  		   SET OI_STATE = #{oiState},
+  			   OI_PRINT_NUM = #{oiPrintNum},
+  			   OI_RESEL_ORDER_NUM = #{oiReselOrderNum},
+  			   OI_START_TIME = #{oiStartTime},
+  			   OI_END_TIME = #{oiEndTime}
+  		   WHERE OI_UUID = #{oiUuid}
+  </update>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.bp.bean.BPOrderInfoBean" >
+    update BP_ORDER_INFO
+    <set >
+      <if test="oiUuid != null" >
+        OI_UUID = #{oiUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiBCode != null" >
+        OI_B_CODE = #{oiBCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiBType != null" >
+        OI_B_TYPE = #{oiBType,jdbcType=CHAR},
+      </if>
+      <if test="oiIschangeSline != null" >
+        OI_ISCHANGE_SLINE = #{oiIschangeSline,jdbcType=CHAR},
+      </if>
+      <if test="oiDlCode != null" >
+        OI_DL_CODE = #{oiDlCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDlName != null" >
+        OI_DL_NAME = #{oiDlName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSlineCode != null" >
+        OI_SLINE_CODE = #{oiSlineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSlineName != null" >
+        OI_SLINE_NAME = #{oiSlineName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSequence != null" >
+        OI_SEQUENCE = #{oiSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiCode != null" >
+        OI_CODE = #{oiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiRetailerCode != null" >
+        OI_RETAILER_CODE = #{oiRetailerCode,jdbcType=CHAR},
+      </if>
+      <if test="oiRetailerName != null" >
+        OI_RETAILER_NAME = #{oiRetailerName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDate != null" >
+        OI_DATE = #{oiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiSortDate != null" >
+        OI_SORT_DATE = #{oiSortDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiCigFlag != null" >
+        OI_CIG_FLAG = #{oiCigFlag,jdbcType=CHAR},
+      </if>
+      <if test="oiAllNum != null" >
+        OI_ALL_NUM = #{oiAllNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiNormalNum != null" >
+        OI_NORMAL_NUM = #{oiNormalNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiCustomInfo != null" >
+        OI_CUSTOM_INFO = #{oiCustomInfo,jdbcType=CHAR},
+      </if>
+      <if test="oiCheckNum != null" >
+        OI_CHECK_NUM = #{oiCheckNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiSendNum != null" >
+        OI_SEND_NUM = #{oiSendNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiPrintNum != null" >
+        OI_PRINT_NUM = #{oiPrintNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiReselOrderNum != null" >
+        OI_RESEL_ORDER_NUM = #{oiReselOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiStartTime != null" >
+        OI_START_TIME = #{oiStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiEndTime != null" >
+        OI_END_TIME = #{oiEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiState != null" >
+        OI_STATE = #{oiState,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSendState != null" >
+        OI_SEND_STATE = #{oiSendState,jdbcType=CHAR},
+      </if>
+      <if test="oiSelfUpdateTime != null" >
+        OI_SELF_UPDATE_TIME = #{oiSelfUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiSubUpdateTime != null" >
+        OI_SUB_UPDATE_TIME = #{oiSubUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiBUuid != null" >
+        OI_B_UUID = #{oiBUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiDlUuid != null" >
+        OI_DL_UUID = #{oiDlUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oiSelfSequence != null" >
+        OI_SELF_SEQUENCE = #{oiSelfSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiAllNum1 != null" >
+        OI_ALL_NUM1 = #{oiAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="oiSelfBatchSequence != null" >
+        OI_SELF_BATCH_SEQUENCE = #{oiSelfBatchSequence,jdbcType=INTEGER},
+      </if>
+      <if test="oiTotalSequence != null" >
+        OI_TOTAL_SEQUENCE = #{oiTotalSequence,jdbcType=BIGINT},
+      </if>
+      <if test="oiIllegalityNum != null" >
+        OI_ILLEGALITY_NUM = #{oiIllegalityNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiSecondNum != null" >
+        OI_SECOND_NUM = #{oiSecondNum,jdbcType=INTEGER},
+      </if>
+      <if test="oiCommerceCode != null" >
+        OI_COMMERCE_CODE = #{oiCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="oiCommerceName != null" >
+        OI_COMMERCE_NAME = #{oiCommerceName,jdbcType=VARCHAR},
+      </if>
+      <if test="oiLocalStartTime != null" >
+        OI_LOCAL_START_TIME = #{oiLocalStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oiStandardStartTime != null" >
+        OI_STANDARD_START_TIME = #{oiStandardStartTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where OI_ID = #{oiId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.bp.bean.BPOrderInfoBean" >
+    update BP_ORDER_INFO
+    set OI_UUID = #{oiUuid,jdbcType=VARCHAR},
+      OI_B_CODE = #{oiBCode,jdbcType=VARCHAR},
+      OI_B_TYPE = #{oiBType,jdbcType=CHAR},
+      OI_ISCHANGE_SLINE = #{oiIschangeSline,jdbcType=CHAR},
+      OI_DL_CODE = #{oiDlCode,jdbcType=VARCHAR},
+      OI_DL_NAME = #{oiDlName,jdbcType=VARCHAR},
+      OI_SLINE_CODE = #{oiSlineCode,jdbcType=VARCHAR},
+      OI_SLINE_NAME = #{oiSlineName,jdbcType=VARCHAR},
+      OI_SEQUENCE = #{oiSequence,jdbcType=INTEGER},
+      OI_CODE = #{oiCode,jdbcType=VARCHAR},
+      OI_RETAILER_CODE = #{oiRetailerCode,jdbcType=CHAR},
+      OI_RETAILER_NAME = #{oiRetailerName,jdbcType=VARCHAR},
+      OI_DATE = #{oiDate,jdbcType=TIMESTAMP},
+      OI_SORT_DATE = #{oiSortDate,jdbcType=TIMESTAMP},
+      OI_CIG_FLAG = #{oiCigFlag,jdbcType=CHAR},
+      OI_ALL_NUM = #{oiAllNum,jdbcType=INTEGER},
+      OI_NORMAL_NUM = #{oiNormalNum,jdbcType=INTEGER},
+      OI_CUSTOM_INFO = #{oiCustomInfo,jdbcType=CHAR},
+      OI_CHECK_NUM = #{oiCheckNum,jdbcType=INTEGER},
+      OI_SEND_NUM = #{oiSendNum,jdbcType=INTEGER},
+      OI_PRINT_NUM = #{oiPrintNum,jdbcType=INTEGER},
+      OI_RESEL_ORDER_NUM = #{oiReselOrderNum,jdbcType=INTEGER},
+      OI_START_TIME = #{oiStartTime,jdbcType=TIMESTAMP},
+      OI_END_TIME = #{oiEndTime,jdbcType=TIMESTAMP},
+      OI_STATE = #{oiState,jdbcType=VARCHAR},
+      OI_SEND_STATE = #{oiSendState,jdbcType=CHAR},
+      OI_SELF_UPDATE_TIME = #{oiSelfUpdateTime,jdbcType=TIMESTAMP},
+      OI_SUB_UPDATE_TIME = #{oiSubUpdateTime,jdbcType=TIMESTAMP},
+      OI_B_UUID = #{oiBUuid,jdbcType=VARCHAR},
+      OI_DL_UUID = #{oiDlUuid,jdbcType=VARCHAR},
+      OI_SELF_SEQUENCE = #{oiSelfSequence,jdbcType=INTEGER},
+      OI_ALL_NUM1 = #{oiAllNum1,jdbcType=DECIMAL},
+      OI_SELF_BATCH_SEQUENCE = #{oiSelfBatchSequence,jdbcType=INTEGER},
+      OI_TOTAL_SEQUENCE = #{oiTotalSequence,jdbcType=BIGINT},
+      OI_ILLEGALITY_NUM = #{oiIllegalityNum,jdbcType=INTEGER},
+      OI_SECOND_NUM = #{oiSecondNum,jdbcType=INTEGER},
+      OI_COMMERCE_CODE = #{oiCommerceCode,jdbcType=VARCHAR},
+      OI_COMMERCE_NAME = #{oiCommerceName,jdbcType=VARCHAR},
+      OI_LOCAL_START_TIME = #{oiLocalStartTime,jdbcType=TIMESTAMP},
+      OI_STANDARD_START_TIME = #{oiStandardStartTime,jdbcType=TIMESTAMP}
+    where OI_ID = #{oiId,jdbcType=BIGINT}
+  </update>
+</mapper>

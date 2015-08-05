@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.scan.dao.SBillDetailDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.scan.bean.SBillDetailBean" >
+    <id column="BD_ID" property="bdId" jdbcType="BIGINT" />
+    <result column="BD_BB_UUID" property="bdBbUuid" jdbcType="VARCHAR" />
+    <result column="BD_PCIG_CODE" property="bdPcigCode" jdbcType="VARCHAR" />
+    <result column="BD_PCIG_NAME" property="bdPcigName" jdbcType="VARCHAR" />
+    <result column="BD_BCIG_CODE" property="bdBcigCode" jdbcType="VARCHAR" />
+    <result column="BD_BCIG_NAME" property="bdBcigName" jdbcType="VARCHAR" />
+    <result column="BD_BILL_PNUM" property="bdBillPnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_BNUM" property="bdBillBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_ALL_BNUM" property="bdBillAllBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_ZNUM" property="bdBillZnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_ALL_NUM1" property="bdBillAllNum1" jdbcType="INTEGER" />
+    <result column="BD_SCAN_PNUM" property="bdScanPnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_SCAN_BNUM" property="bdBillScanBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_ALL_SCAN_BNUM" property="bdBillAllScanBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_ALL_SCAN_NUM1" property="bdBillAllScanNum1" jdbcType="DECIMAL" />
+    <result column="BD_BILL_FIXED_PNUM" property="bdBillFixedPnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_FIXED_BNUM" property="bdBillFixedBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_FIXED_ALL_BNUM" property="bdBillFixedAllBnum" jdbcType="INTEGER" />
+    <result column="BD_BILL_FIXED_ALL_NUM1" property="bdBillFixedAllNum1" jdbcType="DECIMAL" />
+    <result column="BD_IS_IMPORT" property="bdIsImport" jdbcType="CHAR" />
+    <result column="BD_NOT_RECOGNISE" property="bdNotRecognise" jdbcType="INTEGER" />
+    <result column="BD_INPUT_TYPE" property="bdInputType" jdbcType="CHAR" />
+    <result column="BD_SUB_TOTAL_PRICE" property="bdSubTotalPrice" jdbcType="DECIMAL" />
+    <result column="BD_NUM_SYNC_FLAG" property="bdNumSyncFlag" jdbcType="CHAR" />
+    <result column="BD_SUM_SYNC_FLAG" property="bdSumSyncFlag" jdbcType="CHAR" />
+    <result column="BD_INFORMAL_TYPE" property="bdInformalType" jdbcType="CHAR" />
+    <result column="BD_INFORMAL_REASON" property="bdInformalReason" jdbcType="VARCHAR" />
+    <result column="BD_MEMO" property="bdMemo" jdbcType="VARCHAR" />
+    <result column="BD_EXT1" property="bdExt1" jdbcType="VARCHAR" />
+    <result column="BD_EXT2" property="bdExt2" jdbcType="VARCHAR" />
+    <result column="BD_CREATE_TIME" property="bdCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BD_ID, BD_BB_UUID, BD_PCIG_CODE, BD_PCIG_NAME, BD_BCIG_CODE, BD_BCIG_NAME, BD_BILL_PNUM, 
+    BD_BILL_BNUM, BD_BILL_ALL_BNUM, BD_BILL_ZNUM, BD_BILL_ALL_NUM1, BD_SCAN_PNUM, BD_BILL_SCAN_BNUM, 
+    BD_BILL_ALL_SCAN_BNUM, BD_BILL_ALL_SCAN_NUM1, BD_BILL_FIXED_PNUM, BD_BILL_FIXED_BNUM, 
+    BD_BILL_FIXED_ALL_BNUM, BD_BILL_FIXED_ALL_NUM1, BD_IS_IMPORT, BD_NOT_RECOGNISE, BD_INPUT_TYPE, 
+    BD_SUB_TOTAL_PRICE, BD_NUM_SYNC_FLAG, BD_SUM_SYNC_FLAG, BD_INFORMAL_TYPE, BD_INFORMAL_REASON, 
+    BD_MEMO, BD_EXT1, BD_EXT2, BD_CREATE_TIME
+  </sql>
+  <select id="selectBybdBbUuid" resultType="java.lang.Integer" parameterType="com.icss.vdms.scan.bean.SBillDetailBean">
+  	select COUNT(BD_ID) AS BillDetailCount from S_BILL_DETAIL where BD_BB_UUID = {bdBbUuid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from S_BILL_DETAIL
+    where BD_ID = #{bdId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from S_BILL_DETAIL
+    where BD_ID = #{bdId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.scan.bean.SBillDetailBean" >
+    insert into S_BILL_DETAIL (BD_ID, BD_BB_UUID, BD_PCIG_CODE, 
+      BD_PCIG_NAME, BD_BCIG_CODE, BD_BCIG_NAME, 
+      BD_BILL_PNUM, BD_BILL_BNUM, BD_BILL_ALL_BNUM, 
+      BD_BILL_ZNUM, BD_BILL_ALL_NUM1, BD_SCAN_PNUM, 
+      BD_BILL_SCAN_BNUM, BD_BILL_ALL_SCAN_BNUM, BD_BILL_ALL_SCAN_NUM1, 
+      BD_BILL_FIXED_PNUM, BD_BILL_FIXED_BNUM, BD_BILL_FIXED_ALL_BNUM, 
+      BD_BILL_FIXED_ALL_NUM1, BD_IS_IMPORT, BD_NOT_RECOGNISE, 
+      BD_INPUT_TYPE, BD_SUB_TOTAL_PRICE, BD_NUM_SYNC_FLAG, 
+      BD_SUM_SYNC_FLAG, BD_INFORMAL_TYPE, BD_INFORMAL_REASON, 
+      BD_MEMO, BD_EXT1, BD_EXT2, 
+      BD_CREATE_TIME)
+    values (#{bdId,jdbcType=BIGINT}, #{bdBbUuid,jdbcType=VARCHAR}, #{bdPcigCode,jdbcType=VARCHAR}, 
+      #{bdPcigName,jdbcType=VARCHAR}, #{bdBcigCode,jdbcType=VARCHAR}, #{bdBcigName,jdbcType=VARCHAR}, 
+      #{bdBillPnum,jdbcType=INTEGER}, #{bdBillBnum,jdbcType=INTEGER}, #{bdBillAllBnum,jdbcType=INTEGER}, 
+      #{bdBillZnum,jdbcType=INTEGER}, #{bdBillAllNum1,jdbcType=INTEGER}, #{bdScanPnum,jdbcType=INTEGER}, 
+      #{bdBillScanBnum,jdbcType=INTEGER}, #{bdBillAllScanBnum,jdbcType=INTEGER}, #{bdBillAllScanNum1,jdbcType=DECIMAL}, 
+      #{bdBillFixedPnum,jdbcType=INTEGER}, #{bdBillFixedBnum,jdbcType=INTEGER}, #{bdBillFixedAllBnum,jdbcType=INTEGER}, 
+      #{bdBillFixedAllNum1,jdbcType=DECIMAL}, #{bdIsImport,jdbcType=CHAR}, #{bdNotRecognise,jdbcType=INTEGER}, 
+      #{bdInputType,jdbcType=CHAR}, #{bdSubTotalPrice,jdbcType=DECIMAL}, #{bdNumSyncFlag,jdbcType=CHAR}, 
+      #{bdSumSyncFlag,jdbcType=CHAR}, #{bdInformalType,jdbcType=CHAR}, #{bdInformalReason,jdbcType=VARCHAR}, 
+      #{bdMemo,jdbcType=VARCHAR}, #{bdExt1,jdbcType=VARCHAR}, #{bdExt2,jdbcType=VARCHAR}, 
+      #{bdCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.vdms.scan.bean.SBillDetailBean" >
+    insert into S_BILL_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bdBbUuid != null" >
+        BD_BB_UUID,
+      </if>
+      <if test="bdPcigCode != null" >
+        BD_PCIG_CODE,
+      </if>
+      <if test="bdPcigName != null" >
+        BD_PCIG_NAME,
+      </if>
+      <if test="bdBcigCode != null" >
+        BD_BCIG_CODE,
+      </if>
+      <if test="bdBcigName != null" >
+        BD_BCIG_NAME,
+      </if>
+      <if test="bdBillPnum != null" >
+        BD_BILL_PNUM,
+      </if>
+      <if test="bdBillBnum != null" >
+        BD_BILL_BNUM,
+      </if>
+      <if test="bdBillAllBnum != null" >
+        BD_BILL_ALL_BNUM,
+      </if>
+      <if test="bdBillZnum != null" >
+        BD_BILL_ZNUM,
+      </if>
+      <if test="bdBillAllNum1 != null" >
+        BD_BILL_ALL_NUM1,
+      </if>
+      <if test="bdScanPnum != null" >
+        BD_SCAN_PNUM,
+      </if>
+      <if test="bdBillScanBnum != null" >
+        BD_BILL_SCAN_BNUM,
+      </if>
+      <if test="bdBillAllScanBnum != null" >
+        BD_BILL_ALL_SCAN_BNUM,
+      </if>
+      <if test="bdBillAllScanNum1 != null" >
+        BD_BILL_ALL_SCAN_NUM1,
+      </if>
+      <if test="bdBillFixedPnum != null" >
+        BD_BILL_FIXED_PNUM,
+      </if>
+      <if test="bdBillFixedBnum != null" >
+        BD_BILL_FIXED_BNUM,
+      </if>
+      <if test="bdBillFixedAllBnum != null" >
+        BD_BILL_FIXED_ALL_BNUM,
+      </if>
+      <if test="bdBillFixedAllNum1 != null" >
+        BD_BILL_FIXED_ALL_NUM1,
+      </if>
+      <if test="bdIsImport != null" >
+        BD_IS_IMPORT,
+      </if>
+      <if test="bdNotRecognise != null" >
+        BD_NOT_RECOGNISE,
+      </if>
+      <if test="bdInputType != null" >
+        BD_INPUT_TYPE,
+      </if>
+      <if test="bdSubTotalPrice != null" >
+        BD_SUB_TOTAL_PRICE,
+      </if>
+      <if test="bdNumSyncFlag != null" >
+        BD_NUM_SYNC_FLAG,
+      </if>
+      <if test="bdSumSyncFlag != null" >
+        BD_SUM_SYNC_FLAG,
+      </if>
+      <if test="bdInformalType != null" >
+        BD_INFORMAL_TYPE,
+      </if>
+      <if test="bdInformalReason != null" >
+        BD_INFORMAL_REASON,
+      </if>
+      <if test="bdMemo != null" >
+        BD_MEMO,
+      </if>
+      <if test="bdExt1 != null" >
+        BD_EXT1,
+      </if>
+      <if test="bdExt2 != null" >
+        BD_EXT2,
+      </if>
+      <if test="bdCreateTime != null" >
+        BD_CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bdBbUuid != null" >
+        #{bdBbUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bdPcigCode != null" >
+        #{bdPcigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bdPcigName != null" >
+        #{bdPcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBcigCode != null" >
+        #{bdBcigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBcigName != null" >
+        #{bdBcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBillPnum != null" >
+        #{bdBillPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillBnum != null" >
+        #{bdBillBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllBnum != null" >
+        #{bdBillAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillZnum != null" >
+        #{bdBillZnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllNum1 != null" >
+        #{bdBillAllNum1,jdbcType=INTEGER},
+      </if>
+      <if test="bdScanPnum != null" >
+        #{bdScanPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillScanBnum != null" >
+        #{bdBillScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllScanBnum != null" >
+        #{bdBillAllScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllScanNum1 != null" >
+        #{bdBillAllScanNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bdBillFixedPnum != null" >
+        #{bdBillFixedPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedBnum != null" >
+        #{bdBillFixedBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedAllBnum != null" >
+        #{bdBillFixedAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedAllNum1 != null" >
+        #{bdBillFixedAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bdIsImport != null" >
+        #{bdIsImport,jdbcType=CHAR},
+      </if>
+      <if test="bdNotRecognise != null" >
+        #{bdNotRecognise,jdbcType=INTEGER},
+      </if>
+      <if test="bdInputType != null" >
+        #{bdInputType,jdbcType=CHAR},
+      </if>
+      <if test="bdSubTotalPrice != null" >
+        #{bdSubTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bdNumSyncFlag != null" >
+        #{bdNumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bdSumSyncFlag != null" >
+        #{bdSumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bdInformalType != null" >
+        #{bdInformalType,jdbcType=CHAR},
+      </if>
+      <if test="bdInformalReason != null" >
+        #{bdInformalReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bdMemo != null" >
+        #{bdMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="bdExt1 != null" >
+        #{bdExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="bdExt2 != null" >
+        #{bdExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="bdCreateTime != null" >
+        #{bdCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!-- 新增条码时修改单据明细 -->
+  <update id="updateBillDetailByScanBarcodeResult" parameterType="com.icss.vdms.scan.bean.SBillDetailBean" >
+  	update S_BILL_DETAIL set
+  	BD_SCAN_PNUM = #{bdScanPnum,jdbcType=INTEGER},
+  	BD_BILL_SCAN_BNUM = #{bdBillScanBnum,jdbcType=INTEGER},
+  	BD_BILL_ALL_SCAN_BNUM = #{bdBillAllScanBnum,jdbcType=INTEGER},
+  	BD_BILL_ALL_SCAN_NUM1 = #{bdBillAllScanNum1,jdbcType=DECIMAL}
+  	where BD_BB_UUID = #{bdBbUuid,jdbcType=VARCHAR} and BD_PCIG_CODE = #{bdPcigCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.scan.bean.SBillDetailBean" >
+    update S_BILL_DETAIL
+    <set >
+      <if test="bdPcigCode != null" >
+        BD_PCIG_CODE = #{bdPcigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bdPcigName != null" >
+        BD_PCIG_NAME = #{bdPcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBcigCode != null" >
+        BD_BCIG_CODE = #{bdBcigCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBcigName != null" >
+        BD_BCIG_NAME = #{bdBcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="bdBillPnum != null" >
+        BD_BILL_PNUM = #{bdBillPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillBnum != null" >
+        BD_BILL_BNUM = #{bdBillBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllBnum != null" >
+        BD_BILL_ALL_BNUM = #{bdBillAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillZnum != null" >
+        BD_BILL_ZNUM = #{bdBillZnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllNum1 != null" >
+        BD_BILL_ALL_NUM1 = #{bdBillAllNum1,jdbcType=INTEGER},
+      </if>
+      <if test="bdScanPnum != null" >
+        BD_SCAN_PNUM = #{bdScanPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillScanBnum != null" >
+        BD_BILL_SCAN_BNUM = #{bdBillScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllScanBnum != null" >
+        BD_BILL_ALL_SCAN_BNUM = #{bdBillAllScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillAllScanNum1 != null" >
+        BD_BILL_ALL_SCAN_NUM1 = #{bdBillAllScanNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bdBillFixedPnum != null" >
+        BD_BILL_FIXED_PNUM = #{bdBillFixedPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedBnum != null" >
+        BD_BILL_FIXED_BNUM = #{bdBillFixedBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedAllBnum != null" >
+        BD_BILL_FIXED_ALL_BNUM = #{bdBillFixedAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bdBillFixedAllNum1 != null" >
+        BD_BILL_FIXED_ALL_NUM1 = #{bdBillFixedAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bdIsImport != null" >
+        BD_IS_IMPORT = #{bdIsImport,jdbcType=CHAR},
+      </if>
+      <if test="bdNotRecognise != null" >
+        BD_NOT_RECOGNISE = #{bdNotRecognise,jdbcType=INTEGER},
+      </if>
+      <if test="bdInputType != null" >
+        BD_INPUT_TYPE = #{bdInputType,jdbcType=CHAR},
+      </if>
+      <if test="bdSubTotalPrice != null" >
+        BD_SUB_TOTAL_PRICE = #{bdSubTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bdNumSyncFlag != null" >
+        BD_NUM_SYNC_FLAG = #{bdNumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bdSumSyncFlag != null" >
+        BD_SUM_SYNC_FLAG = #{bdSumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bdInformalType != null" >
+        BD_INFORMAL_TYPE = #{bdInformalType,jdbcType=CHAR},
+      </if>
+      <if test="bdInformalReason != null" >
+        BD_INFORMAL_REASON = #{bdInformalReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bdMemo != null" >
+        BD_MEMO = #{bdMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="bdExt1 != null" >
+        BD_EXT1 = #{bdExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="bdExt2 != null" >
+        BD_EXT2 = #{bdExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="bdCreateTime != null" >
+        BD_CREATE_TIME = #{bdCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BD_BB_UUID = #{bdBbUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.scan.bean.SBillDetailBean" >
+    update S_BILL_DETAIL
+    set BD_BB_UUID = #{bdBbUuid,jdbcType=VARCHAR},
+      BD_PCIG_CODE = #{bdPcigCode,jdbcType=VARCHAR},
+      BD_PCIG_NAME = #{bdPcigName,jdbcType=VARCHAR},
+      BD_BCIG_CODE = #{bdBcigCode,jdbcType=VARCHAR},
+      BD_BCIG_NAME = #{bdBcigName,jdbcType=VARCHAR},
+      BD_BILL_PNUM = #{bdBillPnum,jdbcType=INTEGER},
+      BD_BILL_BNUM = #{bdBillBnum,jdbcType=INTEGER},
+      BD_BILL_ALL_BNUM = #{bdBillAllBnum,jdbcType=INTEGER},
+      BD_BILL_ZNUM = #{bdBillZnum,jdbcType=INTEGER},
+      BD_BILL_ALL_NUM1 = #{bdBillAllNum1,jdbcType=INTEGER},
+      BD_SCAN_PNUM = #{bdScanPnum,jdbcType=INTEGER},
+      BD_BILL_SCAN_BNUM = #{bdBillScanBnum,jdbcType=INTEGER},
+      BD_BILL_ALL_SCAN_BNUM = #{bdBillAllScanBnum,jdbcType=INTEGER},
+      BD_BILL_ALL_SCAN_NUM1 = #{bdBillAllScanNum1,jdbcType=DECIMAL},
+      BD_BILL_FIXED_PNUM = #{bdBillFixedPnum,jdbcType=INTEGER},
+      BD_BILL_FIXED_BNUM = #{bdBillFixedBnum,jdbcType=INTEGER},
+      BD_BILL_FIXED_ALL_BNUM = #{bdBillFixedAllBnum,jdbcType=INTEGER},
+      BD_BILL_FIXED_ALL_NUM1 = #{bdBillFixedAllNum1,jdbcType=DECIMAL},
+      BD_IS_IMPORT = #{bdIsImport,jdbcType=CHAR},
+      BD_NOT_RECOGNISE = #{bdNotRecognise,jdbcType=INTEGER},
+      BD_INPUT_TYPE = #{bdInputType,jdbcType=CHAR},
+      BD_SUB_TOTAL_PRICE = #{bdSubTotalPrice,jdbcType=DECIMAL},
+      BD_NUM_SYNC_FLAG = #{bdNumSyncFlag,jdbcType=CHAR},
+      BD_SUM_SYNC_FLAG = #{bdSumSyncFlag,jdbcType=CHAR},
+      BD_INFORMAL_TYPE = #{bdInformalType,jdbcType=CHAR},
+      BD_INFORMAL_REASON = #{bdInformalReason,jdbcType=VARCHAR},
+      BD_MEMO = #{bdMemo,jdbcType=VARCHAR},
+      BD_EXT1 = #{bdExt1,jdbcType=VARCHAR},
+      BD_EXT2 = #{bdExt2,jdbcType=VARCHAR},
+      BD_CREATE_TIME = #{bdCreateTime,jdbcType=TIMESTAMP}
+    where BD_ID = #{bdId,jdbcType=BIGINT}
+  </update>
+  <!-- 删除单据明细根据单据UUID -->
+  <delete id="deleteBillDetailByUUID" parameterType="java.lang.String" >
+    delete from S_BILL_DETAIL where BD_BB_UUID = #{bdBbUuid,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

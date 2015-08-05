@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.scan.dao.SBillBaseDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.scan.bean.SBillBaseBean" >
+    <id column="BB_ID" property="bbId" jdbcType="BIGINT" />
+    <result column="BB_UUID" property="bbUuid" jdbcType="VARCHAR" />
+    <result column="BB_WS_CODE" property="bbWsCode" jdbcType="VARCHAR" />
+    <result column="BB_BT_CODE" property="bbBtCode" jdbcType="CHAR" />
+    <result column="BB_TICKET_NO" property="bbTicketNo" jdbcType="VARCHAR" />
+    <result column="BB_SCAN_NO" property="bbScanNo" jdbcType="CHAR" />
+    <result column="BB_TRUCK_NO" property="bbTruckNo" jdbcType="VARCHAR" />
+    <result column="BB_FLOW_CODE" property="bbFlowCode" jdbcType="VARCHAR" />
+    <result column="BB_FLOW_NAME" property="bbFlowName" jdbcType="VARCHAR" />
+    <result column="BB_FLOW_TYPE" property="bbFlowType" jdbcType="CHAR" />
+    <result column="BB_INPUT_DATE" property="bbInputDate" jdbcType="TIMESTAMP" />
+    <result column="BB_INPUT_PERSON" property="bbInputPerson" jdbcType="VARCHAR" />
+    <result column="BB_OPER_DATE" property="bbOperDate" jdbcType="TIMESTAMP" />
+    <result column="BB_BP_CODE" property="bbBpCode" jdbcType="CHAR" />
+    <result column="BB_SP_CODES" property="bbSpCodes" jdbcType="VARCHAR" />
+    <result column="BB_TYPE" property="bbType" jdbcType="VARCHAR" />
+    <result column="BB_CIG_TYPE" property="bbCigType" jdbcType="CHAR" />
+    <result column="BB_NOT_RECOGNISE_ALL_PNUM" property="bbNotRecogniseAllPnum" jdbcType="INTEGER" />
+    <result column="BB_MOVE_TYPE" property="bbMoveType" jdbcType="CHAR" />
+    <result column="BB_MOVE_ID_USER" property="bbMoveIdUser" jdbcType="VARCHAR" />
+    <result column="BB_OPPOSITE_MOVE_UUID" property="bbOppositeMoveUuid" jdbcType="VARCHAR" />
+    <result column="BB_MOVE_END_FLAG" property="bbMoveEndFlag" jdbcType="CHAR" />
+    <result column="BB_TOTAL_PNUM" property="bbTotalPnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_BNUM" property="bbTotalBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_ALL_BNUM" property="bbTotalAllBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_ZNUM" property="bbTotalZnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_ALL_NUM1" property="bbTotalAllNum1" jdbcType="DECIMAL" />
+    <result column="BB_TOTAL_SCAN_PNUM" property="bbTotalScanPnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_SCAN_BNUM" property="bbTotalScanBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_ALL_SCAN_BNUM" property="bbTotalAllScanBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_ALL_SCAN_NUM1" property="bbTotalAllScanNum1" jdbcType="DECIMAL" />
+    <result column="BB_TOTAL_FIXED_PNUM" property="bbTotalFixedPnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_FIXED_BNUM" property="bbTotalFixedBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_FIXED_ALL_BNUM" property="bbTotalFixedAllBnum" jdbcType="INTEGER" />
+    <result column="BB_TOTAL_FIXED_ALL_NUM1" property="bbTotalFixedAllNum1" jdbcType="DECIMAL" />
+    <result column="BB_TOTAL_PRICE" property="bbTotalPrice" jdbcType="DECIMAL" />
+    <result column="BB_STATE" property="bbState" jdbcType="CHAR" />
+    <result column="BB_REPORT_TIME" property="bbReportTime" jdbcType="TIMESTAMP" />
+    <result column="BB_REPORT_STATE" property="bbReportState" jdbcType="CHAR" />
+    <result column="BB_SELF_UPDATE_TIME" property="bbSelfUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="BB_FEEDBACK_LIVE" property="bbFeedbackLive" jdbcType="INTEGER" />
+    <result column="BB_FEEDBACK_LIVE_TIME" property="bbFeedbackLiveTime" jdbcType="TIMESTAMP" />
+    <result column="BB_SUB_UPDATE_TIME" property="bbSubUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="BB_FILE_PATH" property="bbFilePath" jdbcType="VARCHAR" />
+    <result column="BB_IS_DELETED" property="bbIsDeleted" jdbcType="CHAR" />
+    <result column="BB_SEND_TIME" property="bbSendTime" jdbcType="TIMESTAMP" />
+    <result column="BB_SEND_STATE" property="bbSendState" jdbcType="CHAR" />
+    <result column="BB_COMMERCE_COLLECT_FLAG" property="bbCommerceCollectFlag" jdbcType="CHAR" />
+    <result column="BB_INDUSTRY_COLLECT_FLAG" property="bbIndustryCollectFlag" jdbcType="CHAR" />
+    <result column="BB_COMMERCE_CODE" property="bbCommerceCode" jdbcType="VARCHAR" />
+    <result column="BB_NOSCAN_FLAG" property="bbNoscanFlag" jdbcType="CHAR" />
+    <result column="BB_DISCHARGE_PORT_SN" property="bbDischargePortSn" jdbcType="VARCHAR" />
+    <result column="BB_DISCHARGE_PORT_NAME" property="bbDischargePortName" jdbcType="VARCHAR" />
+    <result column="BB_CONTACT_NO" property="bbContactNo" jdbcType="VARCHAR" />
+    <result column="BB_RELATE_CONTRACT_NO" property="bbRelateContractNo" jdbcType="VARCHAR" />
+    <result column="BB_REASON" property="bbReason" jdbcType="VARCHAR" />
+    <result column="BB_GROUP_SIGN" property="bbGroupSign" jdbcType="CHAR" />
+    <result column="BB_SRC" property="bbSrc" jdbcType="CHAR" />
+    <result column="BB_INPUT_CODE" property="bbInputCode" jdbcType="VARCHAR" />
+    <result column="BB_SRC_WH_CODE" property="bbSrcWhCode" jdbcType="VARCHAR" />
+    <result column="BB_EXT1" property="bbExt1" jdbcType="CHAR" />
+    <result column="BB_EXT2" property="bbExt2" jdbcType="CHAR" />
+    <result column="BB_NUM_SYNC_FLAG" property="bbNumSyncFlag" jdbcType="CHAR" />
+    <result column="BB_SUM_SYNC_FLAG" property="bbSumSyncFlag" jdbcType="CHAR" />
+    <result column="BB_BAR_SYNC_FLAG" property="bbBarSyncFlag" jdbcType="CHAR" />
+    <result column="BB_BAR_NOSYNC_REASON" property="bbBarNosyncReason" jdbcType="CHAR" />
+    <result column="BB_DRIVER" property="bbDriver" jdbcType="VARCHAR" />
+    <result column="BB_DRIVER_PHONE" property="bbDriverPhone" jdbcType="VARCHAR" />
+    <result column="BB_WMS_UUID" property="bbWmsUuid" jdbcType="VARCHAR" />
+    <result column="BB_HZ_FLAG" property="bbHzFlag" jdbcType="CHAR" />
+    <result column="BB_PERM_ID" property="bbPermId" jdbcType="VARCHAR" />
+    <result column="BB_HZ_TIME" property="bbHzTime" jdbcType="TIMESTAMP" />
+    <result column="BB_IS_RETAINED_FLAG" property="bbIsRetainedFlag" jdbcType="CHAR" />
+    <result column="BB_MEMO" property="bbMemo" jdbcType="VARCHAR" />
+    <result column="BB_CQ_TIME" property="bbCqTime" jdbcType="TIMESTAMP" />
+    <result column="BB_CQPC_IP" property="bbCqpcIp" jdbcType="VARCHAR" />
+    <result column="BB_HZPC_IP" property="bbHzpcIp" jdbcType="VARCHAR" />
+    <result column="BB_CQ_FLAG" property="bbCqFlag" jdbcType="CHAR" />
+    <result column="BB_BACK_WAREHOURCE_FLAG" property="bbBackWarehourceFlag" jdbcType="CHAR" />
+    <result column="BB_BACK_WAREHOURCE_TIME" property="bbBackWarehourceTime" jdbcType="TIMESTAMP" />
+    <result column="BB_BACKUP_FLAG" property="bbBackupFlag" jdbcType="CHAR" />
+    <result column="BB_BACKUP_TIME" property="bbBackupTime" jdbcType="TIMESTAMP" />
+    <result column="BB_SEND_BM_FLAG" property="bbSendBmFlag" jdbcType="CHAR" />
+    <result column="BB_SEND_BM_TIME" property="bbSendBmTime" jdbcType="TIMESTAMP" />
+    <result column="BB_ORDER_MARK" property="bbOrderMark" jdbcType="CHAR" />
+    <result column="BB_PRINT_FLAG" property="bbPrintFlag" jdbcType="CHAR" />
+    <result column="BB_PRINT_TIME" property="bbPrintTime" jdbcType="TIMESTAMP" />
+    <result column="BB_UPDATE_SERVER_STATE_FLAG" property="bbUpdateServerStateFlag" jdbcType="CHAR" />
+    <result column="BB_BILL_MONITOR_STATUS" property="bbBillMonitorStatus" jdbcType="VARCHAR" />
+    <result column="BB_STANDARD_TIME_TYPE" property="bbStandardTimeType" jdbcType="CHAR" />
+    <result column="BB_STANDARD_TIME" property="bbStandardTime" jdbcType="TIMESTAMP" />
+    <result column="BB_LOCAL_TIME" property="bbLocalTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BB_ID, BB_UUID, BB_WS_CODE, BB_BT_CODE, BB_TICKET_NO, BB_SCAN_NO, BB_TRUCK_NO, BB_FLOW_CODE, 
+    BB_FLOW_NAME, BB_FLOW_TYPE, BB_INPUT_DATE, BB_INPUT_PERSON, BB_OPER_DATE, BB_BP_CODE, 
+    BB_SP_CODES, BB_TYPE, BB_CIG_TYPE, BB_NOT_RECOGNISE_ALL_PNUM, BB_MOVE_TYPE, BB_MOVE_ID_USER, 
+    BB_OPPOSITE_MOVE_UUID, BB_MOVE_END_FLAG, BB_TOTAL_PNUM, BB_TOTAL_BNUM, BB_TOTAL_ALL_BNUM, 
+    BB_TOTAL_ZNUM, BB_TOTAL_ALL_NUM1, BB_TOTAL_SCAN_PNUM, BB_TOTAL_SCAN_BNUM, BB_TOTAL_ALL_SCAN_BNUM, 
+    BB_TOTAL_ALL_SCAN_NUM1, BB_TOTAL_FIXED_PNUM, BB_TOTAL_FIXED_BNUM, BB_TOTAL_FIXED_ALL_BNUM, 
+    BB_TOTAL_FIXED_ALL_NUM1, BB_TOTAL_PRICE, BB_STATE, BB_REPORT_TIME, BB_REPORT_STATE, 
+    BB_SELF_UPDATE_TIME, BB_FEEDBACK_LIVE, BB_FEEDBACK_LIVE_TIME, BB_SUB_UPDATE_TIME, 
+    BB_FILE_PATH, BB_IS_DELETED, BB_SEND_TIME, BB_SEND_STATE, BB_COMMERCE_COLLECT_FLAG, 
+    BB_INDUSTRY_COLLECT_FLAG, BB_COMMERCE_CODE, BB_NOSCAN_FLAG, BB_DISCHARGE_PORT_SN, 
+    BB_DISCHARGE_PORT_NAME, BB_CONTACT_NO, BB_RELATE_CONTRACT_NO, BB_REASON, BB_GROUP_SIGN, 
+    BB_SRC, BB_INPUT_CODE, BB_SRC_WH_CODE, BB_EXT1, BB_EXT2, BB_NUM_SYNC_FLAG, BB_SUM_SYNC_FLAG, 
+    BB_BAR_SYNC_FLAG, BB_BAR_NOSYNC_REASON, BB_DRIVER, BB_DRIVER_PHONE, BB_WMS_UUID, 
+    BB_HZ_FLAG, BB_PERM_ID, BB_HZ_TIME, BB_IS_RETAINED_FLAG, BB_MEMO, BB_CQ_TIME, BB_CQPC_IP, 
+    BB_HZPC_IP, BB_CQ_FLAG, BB_BACK_WAREHOURCE_FLAG, BB_BACK_WAREHOURCE_TIME, BB_BACKUP_FLAG, 
+    BB_BACKUP_TIME, BB_SEND_BM_FLAG, BB_SEND_BM_TIME, BB_ORDER_MARK, BB_PRINT_FLAG, BB_PRINT_TIME, 
+    BB_UPDATE_SERVER_STATE_FLAG, BB_BILL_MONITOR_STATUS, BB_STANDARD_TIME_TYPE, BB_STANDARD_TIME, 
+    BB_LOCAL_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from S_BILL_BASE
+    where BB_ID = #{bbId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from S_BILL_BASE
+    where BB_ID = #{bbId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.scan.bean.SBillBaseBean" >
+    insert into S_BILL_BASE (BB_ID, BB_UUID, BB_WS_CODE, 
+      BB_BT_CODE, BB_TICKET_NO, BB_SCAN_NO, 
+      BB_TRUCK_NO, BB_FLOW_CODE, BB_FLOW_NAME, 
+      BB_FLOW_TYPE, BB_INPUT_DATE, BB_INPUT_PERSON, 
+      BB_OPER_DATE, BB_BP_CODE, BB_SP_CODES, 
+      BB_TYPE, BB_CIG_TYPE, BB_NOT_RECOGNISE_ALL_PNUM, 
+      BB_MOVE_TYPE, BB_MOVE_ID_USER, BB_OPPOSITE_MOVE_UUID, 
+      BB_MOVE_END_FLAG, BB_TOTAL_PNUM, BB_TOTAL_BNUM, 
+      BB_TOTAL_ALL_BNUM, BB_TOTAL_ZNUM, BB_TOTAL_ALL_NUM1, 
+      BB_TOTAL_SCAN_PNUM, BB_TOTAL_SCAN_BNUM, BB_TOTAL_ALL_SCAN_BNUM, 
+      BB_TOTAL_ALL_SCAN_NUM1, BB_TOTAL_FIXED_PNUM, BB_TOTAL_FIXED_BNUM, 
+      BB_TOTAL_FIXED_ALL_BNUM, BB_TOTAL_FIXED_ALL_NUM1, 
+      BB_TOTAL_PRICE, BB_STATE, BB_REPORT_TIME, 
+      BB_REPORT_STATE, BB_SELF_UPDATE_TIME, BB_FEEDBACK_LIVE, 
+      BB_FEEDBACK_LIVE_TIME, BB_SUB_UPDATE_TIME, 
+      BB_FILE_PATH, BB_IS_DELETED, BB_SEND_TIME, 
+      BB_SEND_STATE, BB_COMMERCE_COLLECT_FLAG, BB_INDUSTRY_COLLECT_FLAG, 
+      BB_COMMERCE_CODE, BB_NOSCAN_FLAG, BB_DISCHARGE_PORT_SN, 
+      BB_DISCHARGE_PORT_NAME, BB_CONTACT_NO, BB_RELATE_CONTRACT_NO, 
+      BB_REASON, BB_GROUP_SIGN, BB_SRC, 
+      BB_INPUT_CODE, BB_SRC_WH_CODE, BB_EXT1, 
+      BB_EXT2, BB_NUM_SYNC_FLAG, BB_SUM_SYNC_FLAG, 
+      BB_BAR_SYNC_FLAG, BB_BAR_NOSYNC_REASON, BB_DRIVER, 
+      BB_DRIVER_PHONE, BB_WMS_UUID, BB_HZ_FLAG, 
+      BB_PERM_ID, BB_HZ_TIME, BB_IS_RETAINED_FLAG, 
+      BB_MEMO, BB_CQ_TIME, BB_CQPC_IP, 
+      BB_HZPC_IP, BB_CQ_FLAG, BB_BACK_WAREHOURCE_FLAG, 
+      BB_BACK_WAREHOURCE_TIME, BB_BACKUP_FLAG, BB_BACKUP_TIME, 
+      BB_SEND_BM_FLAG, BB_SEND_BM_TIME, BB_ORDER_MARK, 
+      BB_PRINT_FLAG, BB_PRINT_TIME, BB_UPDATE_SERVER_STATE_FLAG, 
+      BB_BILL_MONITOR_STATUS, BB_STANDARD_TIME_TYPE, BB_STANDARD_TIME, 
+      BB_LOCAL_TIME)
+    values (#{bbId,jdbcType=BIGINT}, #{bbUuid,jdbcType=VARCHAR}, #{bbWsCode,jdbcType=VARCHAR}, 
+      #{bbBtCode,jdbcType=CHAR}, #{bbTicketNo,jdbcType=VARCHAR}, #{bbScanNo,jdbcType=CHAR}, 
+      #{bbTruckNo,jdbcType=VARCHAR}, #{bbFlowCode,jdbcType=VARCHAR}, #{bbFlowName,jdbcType=VARCHAR}, 
+      #{bbFlowType,jdbcType=CHAR}, #{bbInputDate,jdbcType=TIMESTAMP}, #{bbInputPerson,jdbcType=VARCHAR}, 
+      #{bbOperDate,jdbcType=TIMESTAMP}, #{bbBpCode,jdbcType=CHAR}, #{bbSpCodes,jdbcType=VARCHAR}, 
+      #{bbType,jdbcType=VARCHAR}, #{bbCigType,jdbcType=CHAR}, #{bbNotRecogniseAllPnum,jdbcType=INTEGER}, 
+      #{bbMoveType,jdbcType=CHAR}, #{bbMoveIdUser,jdbcType=VARCHAR}, #{bbOppositeMoveUuid,jdbcType=VARCHAR}, 
+      #{bbMoveEndFlag,jdbcType=CHAR}, #{bbTotalPnum,jdbcType=INTEGER}, #{bbTotalBnum,jdbcType=INTEGER}, 
+      #{bbTotalAllBnum,jdbcType=INTEGER}, #{bbTotalZnum,jdbcType=INTEGER}, #{bbTotalAllNum1,jdbcType=DECIMAL}, 
+      #{bbTotalScanPnum,jdbcType=INTEGER}, #{bbTotalScanBnum,jdbcType=INTEGER}, #{bbTotalAllScanBnum,jdbcType=INTEGER}, 
+      #{bbTotalAllScanNum1,jdbcType=DECIMAL}, #{bbTotalFixedPnum,jdbcType=INTEGER}, #{bbTotalFixedBnum,jdbcType=INTEGER}, 
+      #{bbTotalFixedAllBnum,jdbcType=INTEGER}, #{bbTotalFixedAllNum1,jdbcType=DECIMAL}, 
+      #{bbTotalPrice,jdbcType=DECIMAL}, #{bbState,jdbcType=CHAR}, #{bbReportTime,jdbcType=TIMESTAMP}, 
+      #{bbReportState,jdbcType=CHAR}, #{bbSelfUpdateTime,jdbcType=TIMESTAMP}, #{bbFeedbackLive,jdbcType=INTEGER}, 
+      #{bbFeedbackLiveTime,jdbcType=TIMESTAMP}, #{bbSubUpdateTime,jdbcType=TIMESTAMP}, 
+      #{bbFilePath,jdbcType=VARCHAR}, #{bbIsDeleted,jdbcType=CHAR}, #{bbSendTime,jdbcType=TIMESTAMP}, 
+      #{bbSendState,jdbcType=CHAR}, #{bbCommerceCollectFlag,jdbcType=CHAR}, #{bbIndustryCollectFlag,jdbcType=CHAR}, 
+      #{bbCommerceCode,jdbcType=VARCHAR}, #{bbNoscanFlag,jdbcType=CHAR}, #{bbDischargePortSn,jdbcType=VARCHAR}, 
+      #{bbDischargePortName,jdbcType=VARCHAR}, #{bbContactNo,jdbcType=VARCHAR}, #{bbRelateContractNo,jdbcType=VARCHAR}, 
+      #{bbReason,jdbcType=VARCHAR}, #{bbGroupSign,jdbcType=CHAR}, #{bbSrc,jdbcType=CHAR}, 
+      #{bbInputCode,jdbcType=VARCHAR}, #{bbSrcWhCode,jdbcType=VARCHAR}, #{bbExt1,jdbcType=CHAR}, 
+      #{bbExt2,jdbcType=CHAR}, #{bbNumSyncFlag,jdbcType=CHAR}, #{bbSumSyncFlag,jdbcType=CHAR}, 
+      #{bbBarSyncFlag,jdbcType=CHAR}, #{bbBarNosyncReason,jdbcType=CHAR}, #{bbDriver,jdbcType=VARCHAR}, 
+      #{bbDriverPhone,jdbcType=VARCHAR}, #{bbWmsUuid,jdbcType=VARCHAR}, #{bbHzFlag,jdbcType=CHAR}, 
+      #{bbPermId,jdbcType=VARCHAR}, #{bbHzTime,jdbcType=TIMESTAMP}, #{bbIsRetainedFlag,jdbcType=CHAR}, 
+      #{bbMemo,jdbcType=VARCHAR}, #{bbCqTime,jdbcType=TIMESTAMP}, #{bbCqpcIp,jdbcType=VARCHAR}, 
+      #{bbHzpcIp,jdbcType=VARCHAR}, #{bbCqFlag,jdbcType=CHAR}, #{bbBackWarehourceFlag,jdbcType=CHAR}, 
+      #{bbBackWarehourceTime,jdbcType=TIMESTAMP}, #{bbBackupFlag,jdbcType=CHAR}, #{bbBackupTime,jdbcType=TIMESTAMP}, 
+      #{bbSendBmFlag,jdbcType=CHAR}, #{bbSendBmTime,jdbcType=TIMESTAMP}, #{bbOrderMark,jdbcType=CHAR}, 
+      #{bbPrintFlag,jdbcType=CHAR}, #{bbPrintTime,jdbcType=TIMESTAMP}, #{bbUpdateServerStateFlag,jdbcType=CHAR}, 
+      #{bbBillMonitorStatus,jdbcType=VARCHAR}, #{bbStandardTimeType,jdbcType=CHAR}, #{bbStandardTime,jdbcType=TIMESTAMP}, 
+      #{bbLocalTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.vdms.scan.bean.SBillBaseBean" >
+    insert into S_BILL_BASE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bbUuid != null" >
+        BB_UUID,
+      </if>
+      <if test="bbWsCode != null" >
+        BB_WS_CODE,
+      </if>
+      <if test="bbBtCode != null" >
+        BB_BT_CODE,
+      </if>
+      <if test="bbTicketNo != null" >
+        BB_TICKET_NO,
+      </if>
+      <if test="bbScanNo != null" >
+        BB_SCAN_NO,
+      </if>
+      <if test="bbTruckNo != null" >
+        BB_TRUCK_NO,
+      </if>
+      <if test="bbFlowCode != null" >
+        BB_FLOW_CODE,
+      </if>
+      <if test="bbFlowName != null" >
+        BB_FLOW_NAME,
+      </if>
+      <if test="bbFlowType != null" >
+        BB_FLOW_TYPE,
+      </if>
+      <if test="bbInputDate != null" >
+        BB_INPUT_DATE,
+      </if>
+      <if test="bbInputPerson != null" >
+        BB_INPUT_PERSON,
+      </if>
+      <if test="bbOperDate != null" >
+        BB_OPER_DATE,
+      </if>
+      <if test="bbBpCode != null" >
+        BB_BP_CODE,
+      </if>
+      <if test="bbSpCodes != null" >
+        BB_SP_CODES,
+      </if>
+      <if test="bbType != null" >
+        BB_TYPE,
+      </if>
+      <if test="bbCigType != null" >
+        BB_CIG_TYPE,
+      </if>
+      <if test="bbNotRecogniseAllPnum != null" >
+        BB_NOT_RECOGNISE_ALL_PNUM,
+      </if>
+      <if test="bbMoveType != null" >
+        BB_MOVE_TYPE,
+      </if>
+      <if test="bbMoveIdUser != null" >
+        BB_MOVE_ID_USER,
+      </if>
+      <if test="bbOppositeMoveUuid != null" >
+        BB_OPPOSITE_MOVE_UUID,
+      </if>
+      <if test="bbMoveEndFlag != null" >
+        BB_MOVE_END_FLAG,
+      </if>
+      <if test="bbTotalPnum != null" >
+        BB_TOTAL_PNUM,
+      </if>
+      <if test="bbTotalBnum != null" >
+        BB_TOTAL_BNUM,
+      </if>
+      <if test="bbTotalAllBnum != null" >
+        BB_TOTAL_ALL_BNUM,
+      </if>
+      <if test="bbTotalZnum != null" >
+        BB_TOTAL_ZNUM,
+      </if>
+      <if test="bbTotalAllNum1 != null" >
+        BB_TOTAL_ALL_NUM1,
+      </if>
+      <if test="bbTotalScanPnum != null" >
+        BB_TOTAL_SCAN_PNUM,
+      </if>
+      <if test="bbTotalScanBnum != null" >
+        BB_TOTAL_SCAN_BNUM,
+      </if>
+      <if test="bbTotalAllScanBnum != null" >
+        BB_TOTAL_ALL_SCAN_BNUM,
+      </if>
+      <if test="bbTotalAllScanNum1 != null" >
+        BB_TOTAL_ALL_SCAN_NUM1,
+      </if>
+      <if test="bbTotalFixedPnum != null" >
+        BB_TOTAL_FIXED_PNUM,
+      </if>
+      <if test="bbTotalFixedBnum != null" >
+        BB_TOTAL_FIXED_BNUM,
+      </if>
+      <if test="bbTotalFixedAllBnum != null" >
+        BB_TOTAL_FIXED_ALL_BNUM,
+      </if>
+      <if test="bbTotalFixedAllNum1 != null" >
+        BB_TOTAL_FIXED_ALL_NUM1,
+      </if>
+      <if test="bbTotalPrice != null" >
+        BB_TOTAL_PRICE,
+      </if>
+      <if test="bbState != null" >
+        BB_STATE,
+      </if>
+      <if test="bbReportTime != null" >
+        BB_REPORT_TIME,
+      </if>
+      <if test="bbReportState != null" >
+        BB_REPORT_STATE,
+      </if>
+      <if test="bbSelfUpdateTime != null" >
+        BB_SELF_UPDATE_TIME,
+      </if>
+      <if test="bbFeedbackLive != null" >
+        BB_FEEDBACK_LIVE,
+      </if>
+      <if test="bbFeedbackLiveTime != null" >
+        BB_FEEDBACK_LIVE_TIME,
+      </if>
+      <if test="bbSubUpdateTime != null" >
+        BB_SUB_UPDATE_TIME,
+      </if>
+      <if test="bbFilePath != null" >
+        BB_FILE_PATH,
+      </if>
+      <if test="bbIsDeleted != null" >
+        BB_IS_DELETED,
+      </if>
+      <if test="bbSendTime != null" >
+        BB_SEND_TIME,
+      </if>
+      <if test="bbSendState != null" >
+        BB_SEND_STATE,
+      </if>
+      <if test="bbCommerceCollectFlag != null" >
+        BB_COMMERCE_COLLECT_FLAG,
+      </if>
+      <if test="bbIndustryCollectFlag != null" >
+        BB_INDUSTRY_COLLECT_FLAG,
+      </if>
+      <if test="bbCommerceCode != null" >
+        BB_COMMERCE_CODE,
+      </if>
+      <if test="bbNoscanFlag != null" >
+        BB_NOSCAN_FLAG,
+      </if>
+      <if test="bbDischargePortSn != null" >
+        BB_DISCHARGE_PORT_SN,
+      </if>
+      <if test="bbDischargePortName != null" >
+        BB_DISCHARGE_PORT_NAME,
+      </if>
+      <if test="bbContactNo != null" >
+        BB_CONTACT_NO,
+      </if>
+      <if test="bbRelateContractNo != null" >
+        BB_RELATE_CONTRACT_NO,
+      </if>
+      <if test="bbReason != null" >
+        BB_REASON,
+      </if>
+      <if test="bbGroupSign != null" >
+        BB_GROUP_SIGN,
+      </if>
+      <if test="bbSrc != null" >
+        BB_SRC,
+      </if>
+      <if test="bbInputCode != null" >
+        BB_INPUT_CODE,
+      </if>
+      <if test="bbSrcWhCode != null" >
+        BB_SRC_WH_CODE,
+      </if>
+      <if test="bbExt1 != null" >
+        BB_EXT1,
+      </if>
+      <if test="bbExt2 != null" >
+        BB_EXT2,
+      </if>
+      <if test="bbNumSyncFlag != null" >
+        BB_NUM_SYNC_FLAG,
+      </if>
+      <if test="bbSumSyncFlag != null" >
+        BB_SUM_SYNC_FLAG,
+      </if>
+      <if test="bbBarSyncFlag != null" >
+        BB_BAR_SYNC_FLAG,
+      </if>
+      <if test="bbBarNosyncReason != null" >
+        BB_BAR_NOSYNC_REASON,
+      </if>
+      <if test="bbDriver != null" >
+        BB_DRIVER,
+      </if>
+      <if test="bbDriverPhone != null" >
+        BB_DRIVER_PHONE,
+      </if>
+      <if test="bbWmsUuid != null" >
+        BB_WMS_UUID,
+      </if>
+      <if test="bbHzFlag != null" >
+        BB_HZ_FLAG,
+      </if>
+      <if test="bbPermId != null" >
+        BB_PERM_ID,
+      </if>
+      <if test="bbHzTime != null" >
+        BB_HZ_TIME,
+      </if>
+      <if test="bbIsRetainedFlag != null" >
+        BB_IS_RETAINED_FLAG,
+      </if>
+      <if test="bbMemo != null" >
+        BB_MEMO,
+      </if>
+      <if test="bbCqTime != null" >
+        BB_CQ_TIME,
+      </if>
+      <if test="bbCqpcIp != null" >
+        BB_CQPC_IP,
+      </if>
+      <if test="bbHzpcIp != null" >
+        BB_HZPC_IP,
+      </if>
+      <if test="bbCqFlag != null" >
+        BB_CQ_FLAG,
+      </if>
+      <if test="bbBackWarehourceFlag != null" >
+        BB_BACK_WAREHOURCE_FLAG,
+      </if>
+      <if test="bbBackWarehourceTime != null" >
+        BB_BACK_WAREHOURCE_TIME,
+      </if>
+      <if test="bbBackupFlag != null" >
+        BB_BACKUP_FLAG,
+      </if>
+      <if test="bbBackupTime != null" >
+        BB_BACKUP_TIME,
+      </if>
+      <if test="bbSendBmFlag != null" >
+        BB_SEND_BM_FLAG,
+      </if>
+      <if test="bbSendBmTime != null" >
+        BB_SEND_BM_TIME,
+      </if>
+      <if test="bbOrderMark != null" >
+        BB_ORDER_MARK,
+      </if>
+      <if test="bbPrintFlag != null" >
+        BB_PRINT_FLAG,
+      </if>
+      <if test="bbPrintTime != null" >
+        BB_PRINT_TIME,
+      </if>
+      <if test="bbUpdateServerStateFlag != null" >
+        BB_UPDATE_SERVER_STATE_FLAG,
+      </if>
+      <if test="bbBillMonitorStatus != null" >
+        BB_BILL_MONITOR_STATUS,
+      </if>
+      <if test="bbStandardTimeType != null" >
+        BB_STANDARD_TIME_TYPE,
+      </if>
+      <if test="bbStandardTime != null" >
+        BB_STANDARD_TIME,
+      </if>
+      <if test="bbLocalTime != null" >
+        BB_LOCAL_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bbUuid != null" >
+        #{bbUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbWsCode != null" >
+        #{bbWsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbBtCode != null" >
+        #{bbBtCode,jdbcType=CHAR},
+      </if>
+      <if test="bbTicketNo != null" >
+        #{bbTicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbScanNo != null" >
+        #{bbScanNo,jdbcType=CHAR},
+      </if>
+      <if test="bbTruckNo != null" >
+        #{bbTruckNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowCode != null" >
+        #{bbFlowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowName != null" >
+        #{bbFlowName,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowType != null" >
+        #{bbFlowType,jdbcType=CHAR},
+      </if>
+      <if test="bbInputDate != null" >
+        #{bbInputDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbInputPerson != null" >
+        #{bbInputPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="bbOperDate != null" >
+        #{bbOperDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbBpCode != null" >
+        #{bbBpCode,jdbcType=CHAR},
+      </if>
+      <if test="bbSpCodes != null" >
+        #{bbSpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="bbType != null" >
+        #{bbType,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCigType != null" >
+        #{bbCigType,jdbcType=CHAR},
+      </if>
+      <if test="bbNotRecogniseAllPnum != null" >
+        #{bbNotRecogniseAllPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbMoveType != null" >
+        #{bbMoveType,jdbcType=CHAR},
+      </if>
+      <if test="bbMoveIdUser != null" >
+        #{bbMoveIdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bbOppositeMoveUuid != null" >
+        #{bbOppositeMoveUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbMoveEndFlag != null" >
+        #{bbMoveEndFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbTotalPnum != null" >
+        #{bbTotalPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalBnum != null" >
+        #{bbTotalBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllBnum != null" >
+        #{bbTotalAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalZnum != null" >
+        #{bbTotalZnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllNum1 != null" >
+        #{bbTotalAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalScanPnum != null" >
+        #{bbTotalScanPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalScanBnum != null" >
+        #{bbTotalScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllScanBnum != null" >
+        #{bbTotalAllScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllScanNum1 != null" >
+        #{bbTotalAllScanNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalFixedPnum != null" >
+        #{bbTotalFixedPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedBnum != null" >
+        #{bbTotalFixedBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedAllBnum != null" >
+        #{bbTotalFixedAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedAllNum1 != null" >
+        #{bbTotalFixedAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalPrice != null" >
+        #{bbTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bbState != null" >
+        #{bbState,jdbcType=CHAR},
+      </if>
+      <if test="bbReportTime != null" >
+        #{bbReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbReportState != null" >
+        #{bbReportState,jdbcType=CHAR},
+      </if>
+      <if test="bbSelfUpdateTime != null" >
+        #{bbSelfUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbFeedbackLive != null" >
+        #{bbFeedbackLive,jdbcType=INTEGER},
+      </if>
+      <if test="bbFeedbackLiveTime != null" >
+        #{bbFeedbackLiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSubUpdateTime != null" >
+        #{bbSubUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbFilePath != null" >
+        #{bbFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bbIsDeleted != null" >
+        #{bbIsDeleted,jdbcType=CHAR},
+      </if>
+      <if test="bbSendTime != null" >
+        #{bbSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSendState != null" >
+        #{bbSendState,jdbcType=CHAR},
+      </if>
+      <if test="bbCommerceCollectFlag != null" >
+        #{bbCommerceCollectFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbIndustryCollectFlag != null" >
+        #{bbIndustryCollectFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbCommerceCode != null" >
+        #{bbCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbNoscanFlag != null" >
+        #{bbNoscanFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbDischargePortSn != null" >
+        #{bbDischargePortSn,jdbcType=VARCHAR},
+      </if>
+      <if test="bbDischargePortName != null" >
+        #{bbDischargePortName,jdbcType=VARCHAR},
+      </if>
+      <if test="bbContactNo != null" >
+        #{bbContactNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbRelateContractNo != null" >
+        #{bbRelateContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbReason != null" >
+        #{bbReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bbGroupSign != null" >
+        #{bbGroupSign,jdbcType=CHAR},
+      </if>
+      <if test="bbSrc != null" >
+        #{bbSrc,jdbcType=CHAR},
+      </if>
+      <if test="bbInputCode != null" >
+        #{bbInputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbSrcWhCode != null" >
+        #{bbSrcWhCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbExt1 != null" >
+        #{bbExt1,jdbcType=CHAR},
+      </if>
+      <if test="bbExt2 != null" >
+        #{bbExt2,jdbcType=CHAR},
+      </if>
+      <if test="bbNumSyncFlag != null" >
+        #{bbNumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbSumSyncFlag != null" >
+        #{bbSumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBarSyncFlag != null" >
+        #{bbBarSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBarNosyncReason != null" >
+        #{bbBarNosyncReason,jdbcType=CHAR},
+      </if>
+      <if test="bbDriver != null" >
+        #{bbDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="bbDriverPhone != null" >
+        #{bbDriverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bbWmsUuid != null" >
+        #{bbWmsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzFlag != null" >
+        #{bbHzFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbPermId != null" >
+        #{bbPermId,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzTime != null" >
+        #{bbHzTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbIsRetainedFlag != null" >
+        #{bbIsRetainedFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbMemo != null" >
+        #{bbMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCqTime != null" >
+        #{bbCqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbCqpcIp != null" >
+        #{bbCqpcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzpcIp != null" >
+        #{bbHzpcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCqFlag != null" >
+        #{bbCqFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackWarehourceFlag != null" >
+        #{bbBackWarehourceFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackWarehourceTime != null" >
+        #{bbBackWarehourceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbBackupFlag != null" >
+        #{bbBackupFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackupTime != null" >
+        #{bbBackupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSendBmFlag != null" >
+        #{bbSendBmFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbSendBmTime != null" >
+        #{bbSendBmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbOrderMark != null" >
+        #{bbOrderMark,jdbcType=CHAR},
+      </if>
+      <if test="bbPrintFlag != null" >
+        #{bbPrintFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbPrintTime != null" >
+        #{bbPrintTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbUpdateServerStateFlag != null" >
+        #{bbUpdateServerStateFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBillMonitorStatus != null" >
+        #{bbBillMonitorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bbStandardTimeType != null" >
+        #{bbStandardTimeType,jdbcType=CHAR},
+      </if>
+      <if test="bbStandardTime != null" >
+        #{bbStandardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbLocalTime != null" >
+        #{bbLocalTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据单据UUID查询单据 -->
+  <select id="selectIsExitBillBaseByUuid" resultType="java.lang.Integer" parameterType="com.icss.vdms.scan.bean.SBillBaseBean">
+  	select count(BB_ID) as BillCount from S_BILL_BASE where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </select>
+  <!-- 删除单据，逻辑删除，状态修改IS_DELETE -->
+  <update id="updateBillBaseByUuidUseToDelete" parameterType="com.icss.vdms.scan.bean.SBillBaseBean">
+  	update S_BILL_BASE set BB_IS_DELETED = #{bbIsDeleted,jdbcType=CHAR}
+    where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </update>
+  <!-- 单据启动，状态修改 -->
+  <update id="updateBillBaseStateByUuidUseToBillStart" parameterType="com.icss.vdms.scan.bean.SBillBaseBean">
+  	update S_BILL_BASE set BB_STATE = #{bbState,jdbcType=CHAR}
+	where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </update>
+  <!-- 单据确认信息，状态修改-->
+  <update id="updateBillBaseStateByUuidUseToBillConfirm" parameterType="com.icss.vdms.scan.bean.SBillBaseBean">
+  	update S_BILL_BASE set BB_STATE = #{bbState,jdbcType=CHAR}
+	where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </update>
+  <!-- 在新增条码时修改单据变化字段 -->
+  <update id="updateBillBaseByScanBarcodeResult" parameterType="com.icss.vdms.scan.bean.SBillBaseBean">
+  	update S_BILL_BASE set 
+  	BB_TOTAL_SCAN_PNUM = #{bbTotalScanPnum,jdbcType=INTEGER},
+  	BB_TOTAL_SCAN_BNUM = #{bbTotalScanBnum,jdbcType=INTEGER},
+  	BB_TOTAL_ALL_SCAN_BNUM = #{bbTotalAllScanBnum,jdbcType=INTEGER},
+    BB_TOTAL_ALL_SCAN_NUM1 = #{bbTotalAllScanNum1,jdbcType=DECIMAL}
+    where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.scan.bean.SBillBaseBean" >
+    update S_BILL_BASE
+    <set >
+      <if test="bbWsCode != null" >
+        BB_WS_CODE = #{bbWsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbBtCode != null" >
+        BB_BT_CODE = #{bbBtCode,jdbcType=CHAR},
+      </if>
+      <if test="bbTicketNo != null" >
+        BB_TICKET_NO = #{bbTicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbScanNo != null" >
+        BB_SCAN_NO = #{bbScanNo,jdbcType=CHAR},
+      </if>
+      <if test="bbTruckNo != null" >
+        BB_TRUCK_NO = #{bbTruckNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowCode != null" >
+        BB_FLOW_CODE = #{bbFlowCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowName != null" >
+        BB_FLOW_NAME = #{bbFlowName,jdbcType=VARCHAR},
+      </if>
+      <if test="bbFlowType != null" >
+        BB_FLOW_TYPE = #{bbFlowType,jdbcType=CHAR},
+      </if>
+      <if test="bbInputDate != null" >
+        BB_INPUT_DATE = #{bbInputDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbInputPerson != null" >
+        BB_INPUT_PERSON = #{bbInputPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="bbOperDate != null" >
+        BB_OPER_DATE = #{bbOperDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbBpCode != null" >
+        BB_BP_CODE = #{bbBpCode,jdbcType=CHAR},
+      </if>
+      <if test="bbSpCodes != null" >
+        BB_SP_CODES = #{bbSpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="bbType != null" >
+        BB_TYPE = #{bbType,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCigType != null" >
+        BB_CIG_TYPE = #{bbCigType,jdbcType=CHAR},
+      </if>
+      <if test="bbNotRecogniseAllPnum != null" >
+        BB_NOT_RECOGNISE_ALL_PNUM = #{bbNotRecogniseAllPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbMoveType != null" >
+        BB_MOVE_TYPE = #{bbMoveType,jdbcType=CHAR},
+      </if>
+      <if test="bbMoveIdUser != null" >
+        BB_MOVE_ID_USER = #{bbMoveIdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bbOppositeMoveUuid != null" >
+        BB_OPPOSITE_MOVE_UUID = #{bbOppositeMoveUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbMoveEndFlag != null" >
+        BB_MOVE_END_FLAG = #{bbMoveEndFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbTotalPnum != null" >
+        BB_TOTAL_PNUM = #{bbTotalPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalBnum != null" >
+        BB_TOTAL_BNUM = #{bbTotalBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllBnum != null" >
+        BB_TOTAL_ALL_BNUM = #{bbTotalAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalZnum != null" >
+        BB_TOTAL_ZNUM = #{bbTotalZnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllNum1 != null" >
+        BB_TOTAL_ALL_NUM1 = #{bbTotalAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalScanPnum != null" >
+        BB_TOTAL_SCAN_PNUM = #{bbTotalScanPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalScanBnum != null" >
+        BB_TOTAL_SCAN_BNUM = #{bbTotalScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllScanBnum != null" >
+        BB_TOTAL_ALL_SCAN_BNUM = #{bbTotalAllScanBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalAllScanNum1 != null" >
+        BB_TOTAL_ALL_SCAN_NUM1 = #{bbTotalAllScanNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalFixedPnum != null" >
+        BB_TOTAL_FIXED_PNUM = #{bbTotalFixedPnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedBnum != null" >
+        BB_TOTAL_FIXED_BNUM = #{bbTotalFixedBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedAllBnum != null" >
+        BB_TOTAL_FIXED_ALL_BNUM = #{bbTotalFixedAllBnum,jdbcType=INTEGER},
+      </if>
+      <if test="bbTotalFixedAllNum1 != null" >
+        BB_TOTAL_FIXED_ALL_NUM1 = #{bbTotalFixedAllNum1,jdbcType=DECIMAL},
+      </if>
+      <if test="bbTotalPrice != null" >
+        BB_TOTAL_PRICE = #{bbTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="bbState != null" >
+        BB_STATE = #{bbState,jdbcType=CHAR},
+      </if>
+      <if test="bbReportTime != null" >
+        BB_REPORT_TIME = #{bbReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbReportState != null" >
+        BB_REPORT_STATE = #{bbReportState,jdbcType=CHAR},
+      </if>
+      <if test="bbSelfUpdateTime != null" >
+        BB_SELF_UPDATE_TIME = #{bbSelfUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbFeedbackLive != null" >
+        BB_FEEDBACK_LIVE = #{bbFeedbackLive,jdbcType=INTEGER},
+      </if>
+      <if test="bbFeedbackLiveTime != null" >
+        BB_FEEDBACK_LIVE_TIME = #{bbFeedbackLiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSubUpdateTime != null" >
+        BB_SUB_UPDATE_TIME = #{bbSubUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbFilePath != null" >
+        BB_FILE_PATH = #{bbFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bbIsDeleted != null" >
+        BB_IS_DELETED = #{bbIsDeleted,jdbcType=CHAR},
+      </if>
+      <if test="bbSendTime != null" >
+        BB_SEND_TIME = #{bbSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSendState != null" >
+        BB_SEND_STATE = #{bbSendState,jdbcType=CHAR},
+      </if>
+      <if test="bbCommerceCollectFlag != null" >
+        BB_COMMERCE_COLLECT_FLAG = #{bbCommerceCollectFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbIndustryCollectFlag != null" >
+        BB_INDUSTRY_COLLECT_FLAG = #{bbIndustryCollectFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbCommerceCode != null" >
+        BB_COMMERCE_CODE = #{bbCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbNoscanFlag != null" >
+        BB_NOSCAN_FLAG = #{bbNoscanFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbDischargePortSn != null" >
+        BB_DISCHARGE_PORT_SN = #{bbDischargePortSn,jdbcType=VARCHAR},
+      </if>
+      <if test="bbDischargePortName != null" >
+        BB_DISCHARGE_PORT_NAME = #{bbDischargePortName,jdbcType=VARCHAR},
+      </if>
+      <if test="bbContactNo != null" >
+        BB_CONTACT_NO = #{bbContactNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbRelateContractNo != null" >
+        BB_RELATE_CONTRACT_NO = #{bbRelateContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbReason != null" >
+        BB_REASON = #{bbReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bbGroupSign != null" >
+        BB_GROUP_SIGN = #{bbGroupSign,jdbcType=CHAR},
+      </if>
+      <if test="bbSrc != null" >
+        BB_SRC = #{bbSrc,jdbcType=CHAR},
+      </if>
+      <if test="bbInputCode != null" >
+        BB_INPUT_CODE = #{bbInputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbSrcWhCode != null" >
+        BB_SRC_WH_CODE = #{bbSrcWhCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bbExt1 != null" >
+        BB_EXT1 = #{bbExt1,jdbcType=CHAR},
+      </if>
+      <if test="bbExt2 != null" >
+        BB_EXT2 = #{bbExt2,jdbcType=CHAR},
+      </if>
+      <if test="bbNumSyncFlag != null" >
+        BB_NUM_SYNC_FLAG = #{bbNumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbSumSyncFlag != null" >
+        BB_SUM_SYNC_FLAG = #{bbSumSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBarSyncFlag != null" >
+        BB_BAR_SYNC_FLAG = #{bbBarSyncFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBarNosyncReason != null" >
+        BB_BAR_NOSYNC_REASON = #{bbBarNosyncReason,jdbcType=CHAR},
+      </if>
+      <if test="bbDriver != null" >
+        BB_DRIVER = #{bbDriver,jdbcType=VARCHAR},
+      </if>
+      <if test="bbDriverPhone != null" >
+        BB_DRIVER_PHONE = #{bbDriverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bbWmsUuid != null" >
+        BB_WMS_UUID = #{bbWmsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzFlag != null" >
+        BB_HZ_FLAG = #{bbHzFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbPermId != null" >
+        BB_PERM_ID = #{bbPermId,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzTime != null" >
+        BB_HZ_TIME = #{bbHzTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbIsRetainedFlag != null" >
+        BB_IS_RETAINED_FLAG = #{bbIsRetainedFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbMemo != null" >
+        BB_MEMO = #{bbMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCqTime != null" >
+        BB_CQ_TIME = #{bbCqTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbCqpcIp != null" >
+        BB_CQPC_IP = #{bbCqpcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bbHzpcIp != null" >
+        BB_HZPC_IP = #{bbHzpcIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bbCqFlag != null" >
+        BB_CQ_FLAG = #{bbCqFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackWarehourceFlag != null" >
+        BB_BACK_WAREHOURCE_FLAG = #{bbBackWarehourceFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackWarehourceTime != null" >
+        BB_BACK_WAREHOURCE_TIME = #{bbBackWarehourceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbBackupFlag != null" >
+        BB_BACKUP_FLAG = #{bbBackupFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBackupTime != null" >
+        BB_BACKUP_TIME = #{bbBackupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbSendBmFlag != null" >
+        BB_SEND_BM_FLAG = #{bbSendBmFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbSendBmTime != null" >
+        BB_SEND_BM_TIME = #{bbSendBmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbOrderMark != null" >
+        BB_ORDER_MARK = #{bbOrderMark,jdbcType=CHAR},
+      </if>
+      <if test="bbPrintFlag != null" >
+        BB_PRINT_FLAG = #{bbPrintFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbPrintTime != null" >
+        BB_PRINT_TIME = #{bbPrintTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbUpdateServerStateFlag != null" >
+        BB_UPDATE_SERVER_STATE_FLAG = #{bbUpdateServerStateFlag,jdbcType=CHAR},
+      </if>
+      <if test="bbBillMonitorStatus != null" >
+        BB_BILL_MONITOR_STATUS = #{bbBillMonitorStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bbStandardTimeType != null" >
+        BB_STANDARD_TIME_TYPE = #{bbStandardTimeType,jdbcType=CHAR},
+      </if>
+      <if test="bbStandardTime != null" >
+        BB_STANDARD_TIME = #{bbStandardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbLocalTime != null" >
+        BB_LOCAL_TIME = #{bbLocalTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BB_UUID = #{bbUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.scan.bean.SBillBaseBean" >
+    update S_BILL_BASE
+    set BB_UUID = #{bbUuid,jdbcType=VARCHAR},
+      BB_WS_CODE = #{bbWsCode,jdbcType=VARCHAR},
+      BB_BT_CODE = #{bbBtCode,jdbcType=CHAR},
+      BB_TICKET_NO = #{bbTicketNo,jdbcType=VARCHAR},
+      BB_SCAN_NO = #{bbScanNo,jdbcType=CHAR},
+      BB_TRUCK_NO = #{bbTruckNo,jdbcType=VARCHAR},
+      BB_FLOW_CODE = #{bbFlowCode,jdbcType=VARCHAR},
+      BB_FLOW_NAME = #{bbFlowName,jdbcType=VARCHAR},
+      BB_FLOW_TYPE = #{bbFlowType,jdbcType=CHAR},
+      BB_INPUT_DATE = #{bbInputDate,jdbcType=TIMESTAMP},
+      BB_INPUT_PERSON = #{bbInputPerson,jdbcType=VARCHAR},
+      BB_OPER_DATE = #{bbOperDate,jdbcType=TIMESTAMP},
+      BB_BP_CODE = #{bbBpCode,jdbcType=CHAR},
+      BB_SP_CODES = #{bbSpCodes,jdbcType=VARCHAR},
+      BB_TYPE = #{bbType,jdbcType=VARCHAR},
+      BB_CIG_TYPE = #{bbCigType,jdbcType=CHAR},
+      BB_NOT_RECOGNISE_ALL_PNUM = #{bbNotRecogniseAllPnum,jdbcType=INTEGER},
+      BB_MOVE_TYPE = #{bbMoveType,jdbcType=CHAR},
+      BB_MOVE_ID_USER = #{bbMoveIdUser,jdbcType=VARCHAR},
+      BB_OPPOSITE_MOVE_UUID = #{bbOppositeMoveUuid,jdbcType=VARCHAR},
+      BB_MOVE_END_FLAG = #{bbMoveEndFlag,jdbcType=CHAR},
+      BB_TOTAL_PNUM = #{bbTotalPnum,jdbcType=INTEGER},
+      BB_TOTAL_BNUM = #{bbTotalBnum,jdbcType=INTEGER},
+      BB_TOTAL_ALL_BNUM = #{bbTotalAllBnum,jdbcType=INTEGER},
+      BB_TOTAL_ZNUM = #{bbTotalZnum,jdbcType=INTEGER},
+      BB_TOTAL_ALL_NUM1 = #{bbTotalAllNum1,jdbcType=DECIMAL},
+      BB_TOTAL_SCAN_PNUM = #{bbTotalScanPnum,jdbcType=INTEGER},
+      BB_TOTAL_SCAN_BNUM = #{bbTotalScanBnum,jdbcType=INTEGER},
+      BB_TOTAL_ALL_SCAN_BNUM = #{bbTotalAllScanBnum,jdbcType=INTEGER},
+      BB_TOTAL_ALL_SCAN_NUM1 = #{bbTotalAllScanNum1,jdbcType=DECIMAL},
+      BB_TOTAL_FIXED_PNUM = #{bbTotalFixedPnum,jdbcType=INTEGER},
+      BB_TOTAL_FIXED_BNUM = #{bbTotalFixedBnum,jdbcType=INTEGER},
+      BB_TOTAL_FIXED_ALL_BNUM = #{bbTotalFixedAllBnum,jdbcType=INTEGER},
+      BB_TOTAL_FIXED_ALL_NUM1 = #{bbTotalFixedAllNum1,jdbcType=DECIMAL},
+      BB_TOTAL_PRICE = #{bbTotalPrice,jdbcType=DECIMAL},
+      BB_STATE = #{bbState,jdbcType=CHAR},
+      BB_REPORT_TIME = #{bbReportTime,jdbcType=TIMESTAMP},
+      BB_REPORT_STATE = #{bbReportState,jdbcType=CHAR},
+      BB_SELF_UPDATE_TIME = #{bbSelfUpdateTime,jdbcType=TIMESTAMP},
+      BB_FEEDBACK_LIVE = #{bbFeedbackLive,jdbcType=INTEGER},
+      BB_FEEDBACK_LIVE_TIME = #{bbFeedbackLiveTime,jdbcType=TIMESTAMP},
+      BB_SUB_UPDATE_TIME = #{bbSubUpdateTime,jdbcType=TIMESTAMP},
+      BB_FILE_PATH = #{bbFilePath,jdbcType=VARCHAR},
+      BB_IS_DELETED = #{bbIsDeleted,jdbcType=CHAR},
+      BB_SEND_TIME = #{bbSendTime,jdbcType=TIMESTAMP},
+      BB_SEND_STATE = #{bbSendState,jdbcType=CHAR},
+      BB_COMMERCE_COLLECT_FLAG = #{bbCommerceCollectFlag,jdbcType=CHAR},
+      BB_INDUSTRY_COLLECT_FLAG = #{bbIndustryCollectFlag,jdbcType=CHAR},
+      BB_COMMERCE_CODE = #{bbCommerceCode,jdbcType=VARCHAR},
+      BB_NOSCAN_FLAG = #{bbNoscanFlag,jdbcType=CHAR},
+      BB_DISCHARGE_PORT_SN = #{bbDischargePortSn,jdbcType=VARCHAR},
+      BB_DISCHARGE_PORT_NAME = #{bbDischargePortName,jdbcType=VARCHAR},
+      BB_CONTACT_NO = #{bbContactNo,jdbcType=VARCHAR},
+      BB_RELATE_CONTRACT_NO = #{bbRelateContractNo,jdbcType=VARCHAR},
+      BB_REASON = #{bbReason,jdbcType=VARCHAR},
+      BB_GROUP_SIGN = #{bbGroupSign,jdbcType=CHAR},
+      BB_SRC = #{bbSrc,jdbcType=CHAR},
+      BB_INPUT_CODE = #{bbInputCode,jdbcType=VARCHAR},
+      BB_SRC_WH_CODE = #{bbSrcWhCode,jdbcType=VARCHAR},
+      BB_EXT1 = #{bbExt1,jdbcType=CHAR},
+      BB_EXT2 = #{bbExt2,jdbcType=CHAR},
+      BB_NUM_SYNC_FLAG = #{bbNumSyncFlag,jdbcType=CHAR},
+      BB_SUM_SYNC_FLAG = #{bbSumSyncFlag,jdbcType=CHAR},
+      BB_BAR_SYNC_FLAG = #{bbBarSyncFlag,jdbcType=CHAR},
+      BB_BAR_NOSYNC_REASON = #{bbBarNosyncReason,jdbcType=CHAR},
+      BB_DRIVER = #{bbDriver,jdbcType=VARCHAR},
+      BB_DRIVER_PHONE = #{bbDriverPhone,jdbcType=VARCHAR},
+      BB_WMS_UUID = #{bbWmsUuid,jdbcType=VARCHAR},
+      BB_HZ_FLAG = #{bbHzFlag,jdbcType=CHAR},
+      BB_PERM_ID = #{bbPermId,jdbcType=VARCHAR},
+      BB_HZ_TIME = #{bbHzTime,jdbcType=TIMESTAMP},
+      BB_IS_RETAINED_FLAG = #{bbIsRetainedFlag,jdbcType=CHAR},
+      BB_MEMO = #{bbMemo,jdbcType=VARCHAR},
+      BB_CQ_TIME = #{bbCqTime,jdbcType=TIMESTAMP},
+      BB_CQPC_IP = #{bbCqpcIp,jdbcType=VARCHAR},
+      BB_HZPC_IP = #{bbHzpcIp,jdbcType=VARCHAR},
+      BB_CQ_FLAG = #{bbCqFlag,jdbcType=CHAR},
+      BB_BACK_WAREHOURCE_FLAG = #{bbBackWarehourceFlag,jdbcType=CHAR},
+      BB_BACK_WAREHOURCE_TIME = #{bbBackWarehourceTime,jdbcType=TIMESTAMP},
+      BB_BACKUP_FLAG = #{bbBackupFlag,jdbcType=CHAR},
+      BB_BACKUP_TIME = #{bbBackupTime,jdbcType=TIMESTAMP},
+      BB_SEND_BM_FLAG = #{bbSendBmFlag,jdbcType=CHAR},
+      BB_SEND_BM_TIME = #{bbSendBmTime,jdbcType=TIMESTAMP},
+      BB_ORDER_MARK = #{bbOrderMark,jdbcType=CHAR},
+      BB_PRINT_FLAG = #{bbPrintFlag,jdbcType=CHAR},
+      BB_PRINT_TIME = #{bbPrintTime,jdbcType=TIMESTAMP},
+      BB_UPDATE_SERVER_STATE_FLAG = #{bbUpdateServerStateFlag,jdbcType=CHAR},
+      BB_BILL_MONITOR_STATUS = #{bbBillMonitorStatus,jdbcType=VARCHAR},
+      BB_STANDARD_TIME_TYPE = #{bbStandardTimeType,jdbcType=CHAR},
+      BB_STANDARD_TIME = #{bbStandardTime,jdbcType=TIMESTAMP},
+      BB_LOCAL_TIME = #{bbLocalTime,jdbcType=TIMESTAMP}
+    where BB_ID = #{bbId,jdbcType=BIGINT}
+  </update>
+</mapper>

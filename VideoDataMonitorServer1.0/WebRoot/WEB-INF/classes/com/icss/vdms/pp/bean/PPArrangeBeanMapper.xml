@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.pp.dao.PPArrangeDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.pp.bean.PPArrangeBean" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="PPID" property="ppid" jdbcType="BIGINT" />
+    <result column="PRINTERID" property="printerid" jdbcType="VARCHAR" />
+    <result column="PLANNO" property="planno" jdbcType="INTEGER" />
+    <result column="ARRANGEFLAG" property="arrangeflag" jdbcType="CHAR" />
+    <result column="ARRANGEUUID" property="arrangeuuid" jdbcType="VARCHAR" />
+    <result column="BALUUID" property="baluuid" jdbcType="VARCHAR" />
+    <result column="BALUUID_ORIGINAL" property="baluuidOriginal" jdbcType="VARCHAR" />
+    <result column="BARRANGEDATE" property="barrangedate" jdbcType="TIMESTAMP" />
+    <result column="PRODUCEDATE" property="producedate" jdbcType="TIMESTAMP" />
+    <result column="CIGBRANDCODE" property="cigbrandcode" jdbcType="CHAR" />
+    <result column="CIGBRAND" property="cigbrand" jdbcType="VARCHAR" />
+    <result column="TRADETYPE" property="tradetype" jdbcType="INTEGER" />
+    <result column="CLASSCODE" property="classcode" jdbcType="VARCHAR" />
+    <result column="CLASSCODE_ORIGINAL" property="classcodeOriginal" jdbcType="VARCHAR" />
+    <result column="ARRANGENUM" property="arrangenum" jdbcType="INTEGER" />
+    <result column="DOWNNUM" property="downnum" jdbcType="INTEGER" />
+    <result column="PRINTNUM" property="printnum" jdbcType="INTEGER" />
+    <result column="APPLYNUM" property="applynum" jdbcType="INTEGER" />
+    <result column="INITTIME" property="inittime" jdbcType="TIMESTAMP" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="PLANFLAG" property="planflag" jdbcType="SMALLINT" />
+    <result column="PLANFINISHFLAG" property="planfinishflag" jdbcType="SMALLINT" />
+    <result column="SENDBACKFLAG" property="sendbackflag" jdbcType="SMALLINT" />
+    <result column="CONFIRMFLAG" property="confirmflag" jdbcType="SMALLINT" />
+    <result column="ARRANGETYPE" property="arrangetype" jdbcType="SMALLINT" />
+    <result column="WORKSHOPCODE" property="workshopcode" jdbcType="VARCHAR" />
+    <result column="WORKSHOPNAME" property="workshopname" jdbcType="VARCHAR" />
+    <result column="CONTRACT_NO" property="contractNo" jdbcType="VARCHAR" />
+    <result column="SEND_CODE" property="sendCode" jdbcType="VARCHAR" />
+    <result column="SEND_NAME" property="sendName" jdbcType="VARCHAR" />
+    <result column="IN_PNUM" property="inPnum" jdbcType="INTEGER" />
+    <result column="NOT_RECOGNISE_PNUM" property="notRecognisePnum" jdbcType="INTEGER" />
+    <result column="SCANNUM" property="scannum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PPID, PRINTERID, PLANNO, ARRANGEFLAG, ARRANGEUUID, BALUUID, BALUUID_ORIGINAL, 
+    BARRANGEDATE, PRODUCEDATE, CIGBRANDCODE, CIGBRAND, TRADETYPE, CLASSCODE, CLASSCODE_ORIGINAL, 
+    ARRANGENUM, DOWNNUM, PRINTNUM, APPLYNUM, INITTIME, STARTTIME, ENDTIME, PLANFLAG, 
+    PLANFINISHFLAG, SENDBACKFLAG, CONFIRMFLAG, ARRANGETYPE, WORKSHOPCODE, WORKSHOPNAME, 
+    CONTRACT_NO, SEND_CODE, SEND_NAME, IN_PNUM, NOT_RECOGNISE_PNUM, SCANNUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from PP_ARRANGE
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from PP_ARRANGE
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.pp.bean.PPArrangeBean" >
+    insert into PP_ARRANGE (ID, PPID, PRINTERID, 
+      PLANNO, ARRANGEFLAG, ARRANGEUUID, 
+      BALUUID, BALUUID_ORIGINAL, BARRANGEDATE, 
+      PRODUCEDATE, CIGBRANDCODE, CIGBRAND, 
+      TRADETYPE, CLASSCODE, CLASSCODE_ORIGINAL, 
+      ARRANGENUM, DOWNNUM, PRINTNUM, 
+      APPLYNUM, INITTIME, STARTTIME, 
+      ENDTIME, PLANFLAG, PLANFINISHFLAG, 
+      SENDBACKFLAG, CONFIRMFLAG, ARRANGETYPE, 
+      WORKSHOPCODE, WORKSHOPNAME, CONTRACT_NO, 
+      SEND_CODE, SEND_NAME, IN_PNUM, 
+      NOT_RECOGNISE_PNUM, SCANNUM)
+    values (#{id,jdbcType=BIGINT}, #{ppid,jdbcType=BIGINT}, #{printerid,jdbcType=VARCHAR}, 
+      #{planno,jdbcType=INTEGER}, #{arrangeflag,jdbcType=CHAR}, #{arrangeuuid,jdbcType=VARCHAR}, 
+      #{baluuid,jdbcType=VARCHAR}, #{baluuidOriginal,jdbcType=VARCHAR}, #{barrangedate,jdbcType=TIMESTAMP}, 
+      #{producedate,jdbcType=TIMESTAMP}, #{cigbrandcode,jdbcType=CHAR}, #{cigbrand,jdbcType=VARCHAR}, 
+      #{tradetype,jdbcType=INTEGER}, #{classcode,jdbcType=VARCHAR}, #{classcodeOriginal,jdbcType=VARCHAR}, 
+      #{arrangenum,jdbcType=INTEGER}, #{downnum,jdbcType=INTEGER}, #{printnum,jdbcType=INTEGER}, 
+      #{applynum,jdbcType=INTEGER}, #{inittime,jdbcType=TIMESTAMP}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{planflag,jdbcType=SMALLINT}, #{planfinishflag,jdbcType=SMALLINT}, 
+      #{sendbackflag,jdbcType=SMALLINT}, #{confirmflag,jdbcType=SMALLINT}, #{arrangetype,jdbcType=SMALLINT}, 
+      #{workshopcode,jdbcType=VARCHAR}, #{workshopname,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR}, 
+      #{sendCode,jdbcType=VARCHAR}, #{sendName,jdbcType=VARCHAR}, #{inPnum,jdbcType=INTEGER}, 
+      #{notRecognisePnum,jdbcType=INTEGER}, #{scannum,jdbcType=INTEGER})
+  </insert>
+  <!-- 插入计划信息 -->
+  <insert id="insertSelective" parameterType="com.icss.vdms.pp.bean.PPArrangeBean" >
+    insert into PP_ARRANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ppid != null" >
+        PPID,
+      </if>
+      <if test="printerid != null" >
+        PRINTERID,
+      </if>
+      <if test="planno != null" >
+        PLANNO,
+      </if>
+      <if test="arrangeflag != null" >
+        ARRANGEFLAG,
+      </if>
+      <if test="arrangeuuid != null" >
+        ARRANGEUUID,
+      </if>
+      <if test="baluuid != null" >
+        BALUUID,
+      </if>
+      <if test="baluuidOriginal != null" >
+        BALUUID_ORIGINAL,
+      </if>
+      <if test="barrangedate != null" >
+        BARRANGEDATE,
+      </if>
+      <if test="producedate != null" >
+        PRODUCEDATE,
+      </if>
+      <if test="cigbrandcode != null" >
+        CIGBRANDCODE,
+      </if>
+      <if test="cigbrand != null" >
+        CIGBRAND,
+      </if>
+      <if test="tradetype != null" >
+        TRADETYPE,
+      </if>
+      <if test="classcode != null" >
+        CLASSCODE,
+      </if>
+      <if test="classcodeOriginal != null" >
+        CLASSCODE_ORIGINAL,
+      </if>
+      <if test="arrangenum != null" >
+        ARRANGENUM,
+      </if>
+      <if test="downnum != null" >
+        DOWNNUM,
+      </if>
+      <if test="printnum != null" >
+        PRINTNUM,
+      </if>
+      <if test="applynum != null" >
+        APPLYNUM,
+      </if>
+      <if test="inittime != null" >
+        INITTIME,
+      </if>
+      <if test="starttime != null" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null" >
+        ENDTIME,
+      </if>
+      <if test="planflag != null" >
+        PLANFLAG,
+      </if>
+      <if test="planfinishflag != null" >
+        PLANFINISHFLAG,
+      </if>
+      <if test="sendbackflag != null" >
+        SENDBACKFLAG,
+      </if>
+      <if test="confirmflag != null" >
+        CONFIRMFLAG,
+      </if>
+      <if test="arrangetype != null" >
+        ARRANGETYPE,
+      </if>
+      <if test="workshopcode != null" >
+        WORKSHOPCODE,
+      </if>
+      <if test="workshopname != null" >
+        WORKSHOPNAME,
+      </if>
+      <if test="contractNo != null" >
+        CONTRACT_NO,
+      </if>
+      <if test="sendCode != null" >
+        SEND_CODE,
+      </if>
+      <if test="sendName != null" >
+        SEND_NAME,
+      </if>
+      <if test="inPnum != null" >
+        IN_PNUM,
+      </if>
+      <if test="notRecognisePnum != null" >
+        NOT_RECOGNISE_PNUM,
+      </if>
+      <if test="scannum != null" >
+        SCANNUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ppid != null" >
+        #{ppid},
+      </if>
+      <if test="printerid != null" >
+        #{printerid},
+      </if>
+      <if test="planno != null" >
+        #{planno},
+      </if>
+      <if test="arrangeflag != null" >
+        #{arrangeflag},
+      </if>
+      <if test="arrangeuuid != null" >
+        #{arrangeuuid},
+      </if>
+      <if test="baluuid != null" >
+        #{baluuid},
+      </if>
+      <if test="baluuidOriginal != null" >
+        #{baluuidOriginal},
+      </if>
+      <if test="barrangedate != null" >
+        #{barrangedate},
+      </if>
+      <if test="producedate != null" >
+        #{producedate},
+      </if>
+      <if test="cigbrandcode != null" >
+        #{cigbrandcode},
+      </if>
+      <if test="cigbrand != null" >
+        #{cigbrand},
+      </if>
+      <if test="tradetype != null" >
+        #{tradetype},
+      </if>
+      <if test="classcode != null" >
+        #{classcode},
+      </if>
+      <if test="classcodeOriginal != null" >
+        #{classcodeOriginal},
+      </if>
+      <if test="arrangenum != null" >
+        #{arrangenum},
+      </if>
+      <if test="downnum != null" >
+        #{downnum},
+      </if>
+      <if test="printnum != null" >
+        #{printnum},
+      </if>
+      <if test="applynum != null" >
+        #{applynum},
+      </if>
+      <if test="inittime != null" >
+        #{inittime},
+      </if>
+      <if test="starttime != null" >
+        #{starttime},
+      </if>
+      <if test="endtime != null" >
+        #{endtime},
+      </if>
+      <if test="planflag != null" >
+        #{planflag},
+      </if>
+      <if test="planfinishflag != null" >
+        #{planfinishflag},
+      </if>
+      <if test="sendbackflag != null" >
+        #{sendbackflag},
+      </if>
+      <if test="confirmflag != null" >
+        #{confirmflag},
+      </if>
+      <if test="arrangetype != null" >
+        #{arrangetype},
+      </if>
+      <if test="workshopcode != null" >
+        #{workshopcode},
+      </if>
+      <if test="workshopname != null" >
+        #{workshopname},
+      </if>
+      <if test="contractNo != null" >
+        #{contractNo},
+      </if>
+      <if test="sendCode != null" >
+        #{sendCode},
+      </if>
+      <if test="sendName != null" >
+        #{sendName},
+      </if>
+      <if test="inPnum != null" >
+        #{inPnum},
+      </if>
+      <if test="notRecognisePnum != null" >
+        #{notRecognisePnum},
+      </if>
+      <if test="scannum != null" >
+        #{scannum},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.pp.bean.PPArrangeBean" >
+    update PP_ARRANGE
+    <set >
+      <if test="printerid != null" >
+        PRINTERID = #{printerid,jdbcType=VARCHAR},
+      </if>
+      <if test="planno != null" >
+        PLANNO = #{planno,jdbcType=INTEGER},
+      </if>
+      <if test="arrangeflag != null" >
+        ARRANGEFLAG = #{arrangeflag,jdbcType=CHAR},
+      </if>
+      <if test="arrangeuuid != null" >
+        ARRANGEUUID = #{arrangeuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="baluuid != null" >
+        BALUUID = #{baluuid,jdbcType=VARCHAR},
+      </if>
+      <if test="baluuidOriginal != null" >
+        BALUUID_ORIGINAL = #{baluuidOriginal,jdbcType=VARCHAR},
+      </if>
+      <if test="barrangedate != null" >
+        BARRANGEDATE = #{barrangedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="producedate != null" >
+        PRODUCEDATE = #{producedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cigbrandcode != null" >
+        CIGBRANDCODE = #{cigbrandcode,jdbcType=CHAR},
+      </if>
+      <if test="cigbrand != null" >
+        CIGBRAND = #{cigbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetype != null" >
+        TRADETYPE = #{tradetype,jdbcType=INTEGER},
+      </if>
+      <if test="classcode != null" >
+        CLASSCODE = #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="classcodeOriginal != null" >
+        CLASSCODE_ORIGINAL = #{classcodeOriginal,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangenum != null" >
+        ARRANGENUM = #{arrangenum,jdbcType=INTEGER},
+      </if>
+      <if test="downnum != null" >
+        DOWNNUM = #{downnum,jdbcType=INTEGER},
+      </if>
+      <if test="printnum != null" >
+        PRINTNUM = #{printnum,jdbcType=INTEGER},
+      </if>
+      <if test="applynum != null" >
+        APPLYNUM = #{applynum,jdbcType=INTEGER},
+      </if>
+      <if test="inittime != null" >
+        INITTIME = #{inittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null" >
+        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planflag != null" >
+        PLANFLAG = #{planflag,jdbcType=SMALLINT},
+      </if>
+      <if test="planfinishflag != null" >
+        PLANFINISHFLAG = #{planfinishflag,jdbcType=SMALLINT},
+      </if>
+      <if test="sendbackflag != null" >
+        SENDBACKFLAG = #{sendbackflag,jdbcType=SMALLINT},
+      </if>
+      <if test="confirmflag != null" >
+        CONFIRMFLAG = #{confirmflag,jdbcType=SMALLINT},
+      </if>
+      <if test="arrangetype != null" >
+        ARRANGETYPE = #{arrangetype,jdbcType=SMALLINT},
+      </if>
+      <if test="workshopcode != null" >
+        WORKSHOPCODE = #{workshopcode,jdbcType=VARCHAR},
+      </if>
+      <if test="workshopname != null" >
+        WORKSHOPNAME = #{workshopname,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null" >
+        CONTRACT_NO = #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCode != null" >
+        SEND_CODE = #{sendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendName != null" >
+        SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="inPnum != null" >
+        IN_PNUM = #{inPnum,jdbcType=INTEGER},
+      </if>
+      <if test="notRecognisePnum != null" >
+        NOT_RECOGNISE_PNUM = #{notRecognisePnum,jdbcType=INTEGER},
+      </if>
+      <if test="scannum != null" >
+        SCANNUM = #{scannum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PPID = #{ppid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.pp.bean.PPArrangeBean" >
+    update PP_ARRANGE
+    set PPID = #{ppid,jdbcType=BIGINT},
+      PRINTERID = #{printerid,jdbcType=VARCHAR},
+      PLANNO = #{planno,jdbcType=INTEGER},
+      ARRANGEFLAG = #{arrangeflag,jdbcType=CHAR},
+      ARRANGEUUID = #{arrangeuuid,jdbcType=VARCHAR},
+      BALUUID = #{baluuid,jdbcType=VARCHAR},
+      BALUUID_ORIGINAL = #{baluuidOriginal,jdbcType=VARCHAR},
+      BARRANGEDATE = #{barrangedate,jdbcType=TIMESTAMP},
+      PRODUCEDATE = #{producedate,jdbcType=TIMESTAMP},
+      CIGBRANDCODE = #{cigbrandcode,jdbcType=CHAR},
+      CIGBRAND = #{cigbrand,jdbcType=VARCHAR},
+      TRADETYPE = #{tradetype,jdbcType=INTEGER},
+      CLASSCODE = #{classcode,jdbcType=VARCHAR},
+      CLASSCODE_ORIGINAL = #{classcodeOriginal,jdbcType=VARCHAR},
+      ARRANGENUM = #{arrangenum,jdbcType=INTEGER},
+      DOWNNUM = #{downnum,jdbcType=INTEGER},
+      PRINTNUM = #{printnum,jdbcType=INTEGER},
+      APPLYNUM = #{applynum,jdbcType=INTEGER},
+      INITTIME = #{inittime,jdbcType=TIMESTAMP},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      PLANFLAG = #{planflag,jdbcType=SMALLINT},
+      PLANFINISHFLAG = #{planfinishflag,jdbcType=SMALLINT},
+      SENDBACKFLAG = #{sendbackflag,jdbcType=SMALLINT},
+      CONFIRMFLAG = #{confirmflag,jdbcType=SMALLINT},
+      ARRANGETYPE = #{arrangetype,jdbcType=SMALLINT},
+      WORKSHOPCODE = #{workshopcode,jdbcType=VARCHAR},
+      WORKSHOPNAME = #{workshopname,jdbcType=VARCHAR},
+      CONTRACT_NO = #{contractNo,jdbcType=VARCHAR},
+      SEND_CODE = #{sendCode,jdbcType=VARCHAR},
+      SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      IN_PNUM = #{inPnum,jdbcType=INTEGER},
+      NOT_RECOGNISE_PNUM = #{notRecognisePnum,jdbcType=INTEGER},
+      SCANNUM = #{scannum,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

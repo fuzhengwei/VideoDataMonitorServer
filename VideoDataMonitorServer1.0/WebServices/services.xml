@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- 扫描数据抽取服务 -->
+	<service xmlns="http://xfire.codehaus.org/config/1.0" xmlns:s="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+		
+		<name>ScanDataService</name>
+		<serviceClass>com.icss.vdms.webservice.scan.insidewebservice.IScanDataService
+		</serviceClass>
+		<implementationClass>com.icss.vdms.webservice.scan.insidewebservice.impl.ScanDataService
+		</implementationClass>
+	</service>
+	
+	<!-- DSA数据抽取服务 -->
+	<service xmlns="http://xfire.codehaus.org/config/1.0" xmlns:s="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+		
+		<name>DsaDataService</name>
+		<serviceClass>com.icss.vdms.webservice.dsa.dsawebservice.IDsaDataService
+		</serviceClass>
+		<implementationClass>com.icss.vdms.webservice.dsa.dsawebservice.impl.DsaDataService
+		</implementationClass>
+	</service>
+	
+</beans>

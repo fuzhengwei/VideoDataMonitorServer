@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.scan.dao.DsaScanDao" >
+
+	<!-- 工商业扫描基础信息 -->
+	<resultMap id="DsaScanInfoMap" type="com.icss.vdms.webservice.dsa.bean.DsaScanInfoBean" >
+		<result column="BB_SP_CODES" property="bbSpCodes" jdbcType="VARCHAR" />
+		<result column="BD_PCIG_CODE" property="bdPcigCode" jdbcType="VARCHAR" />
+		<result column="BD_PCIG_NAME" property="bdPcigName" jdbcType="VARCHAR" />
+		<result column="BD_SCAN_PNUM" property="bdScanPnum" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 工商业扫描详情 -->
+	<resultMap id="DsaScanDetailMap" type="com.icss.vdms.webservice.dsa.bean.DsaScanDetailBean">
+		<id column="BI_ID" property="biId" jdbcType="BIGINT" />
+		<result column="BI_BILL_UUID" property="biBillUuid" jdbcType="VARCHAR" />
+		<result column="BI_SCAN_PC_CODE" property="biScanPcCode" jdbcType="VARCHAR" />
+		<result column="BD_PCIG_CODE" property="bdPcigCode" jdbcType="VARCHAR" />
+		<result column="BD_PCIG_NAME" property="bdPcigName" jdbcType="VARCHAR" />
+		<result column="BD_BILL_PNUM" property="bdBillPnum" jdbcType="INTEGER" />
+		<result column="BD_SCAN_PNUM1" property="bdScanPnum1" jdbcType="INTEGER" />
+		<result column="BD_SCAN_PNUM2" property="bdScanPnum2" jdbcType="INTEGER" />
+		<collection property="dsaScanDetailBarcodeList" ofType="com.icss.vdms.webservice.dsa.bean.DsaScanDetailBarcodeBean">
+			<result column="BI_BARCODE" property="biBarcode" jdbcType="CHAR" />
+			<result column="BI_SCAN_DATE" property="biScanDate" jdbcType="TIMESTAMP" />
+		</collection>
+	</resultMap>
+	
+	<!-- 汇总工业打码打码机信息以及打码量 -->
+	<select id="selectDsaScanInfoList" resultMap="DsaScanInfoMap" parameterType="java.lang.String">
+		<![CDATA[ 
+			SELECT BI_SCAN_PC_CODE AS BB_SP_CODES,
+				   BI_PCIG_BRAND AS BD_PCIG_CODE,
+				   BI_PCIG_NAME AS BD_PCIG_NAME,
+				   COUNT(BI_ID) AS BD_SCAN_PNUM
+			FROM S_BARCODE_INFO
+			WHERE BI_SCAN_DATE BETWEEN VARCHAR_FORMAT(#{searchEndTime},'yyyy-mm-dd') AND #{searchEndTime}
+			GROUP BY BI_SCAN_PC_CODE,BI_PCIG_BRAND,BI_PCIG_NAME
+		]]>
+	</select>
+	
+	<!-- 汇总工业打码打码机信息以及打码量 -->
+	<select id="selectDsaScanDetailList" resultMap="DsaScanDetailMap" parameterType="com.icss.vdms.webservice.dsa.agreement.DsaSearchMsgAgreement">
+		<![CDATA[ 
+			SELECT  A.BD_ID AS BI_ID,
+					B.BI_BILL_UUID AS BI_BILL_UUID,
+					B.BI_SCAN_PC_CODE AS BI_SCAN_PC_CODE,
+					B.BI_PCIG_BRAND AS BD_PCIG_CODE,
+					B.BI_PCIG_NAME AS BD_PCIG_NAME,
+					A.BD_BILL_PNUM AS BD_BILL_PNUM,
+					(SELECT COUNT(BI_ID) FROM S_BARCODE_INFO WHERE BI_SCAN_PC_CODE = #{searchId} AND BI_PCIG_BRAND = B.BI_PCIG_BRAND  AND BI_SCAN_DATE BETWEEN VARCHAR_FORMAT(#{searchStartTime},'yyyy-mm-dd') AND #{searchEndTime}) AS BD_SCAN_PNUM1,
+					(SELECT COUNT(BI_ID) FROM S_BARCODE_INFO WHERE BI_SCAN_PC_CODE = #{searchId} AND BI_PCIG_BRAND = B.BI_PCIG_BRAND  AND BI_SCAN_DATE BETWEEN VARCHAR_FORMAT(#{searchStartTime},'yyyy-mm-dd') AND #{searchEndTime}) AS BD_SCAN_PNUM2,
+					B.BI_BARCODE AS BI_BARCODE,
+					B.BI_SCAN_DATE AS BI_SCAN_DATE
+		    FROM S_BARCODE_INFO B JOIN S_BILL_DETAIL A ON A.BD_BB_UUID = B.BI_BILL_UUID AND A.BD_PCIG_CODE=B.BI_PCIG_BRAND
+			WHERE B.BI_SCAN_PC_CODE = #{searchId} AND 
+			      B.BI_SCAN_DATE BETWEEN #{searchStartTime} AND #{searchEndTime}
+		]]>
+	</select>
+	
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.pp.dao.DsaPPDao" >
+	<!-- 打码机基础信息 -->
+	<resultMap id="DsaPPInfoMap" type="com.icss.vdms.webservice.dsa.bean.DsaPPInfoBean" >
+		<result column="PRINTERIDINFO" property="printerid" jdbcType="VARCHAR" />
+		<result column="CIGBRANDINFO" property="cigbrand" jdbcType="CHAR" />
+		<result column="CIGBRANDCODEINFO" property="cigbrandcode" jdbcType="CHAR" />
+		<result column="APPLYNUM" property="applynum" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 工业打码详情 -->
+	<resultMap id="DsaPPDetailMap" type="com.icss.vdms.webservice.dsa.bean.DsaPPDetailBean" >
+		<id column="PPID" property="id" jdbcType="BIGINT" />
+		<result column="BALUUID" property="baluuid" jdbcType="VARCHAR" />
+		<result column="PRINTERID" property="printerid" jdbcType="VARCHAR" />
+		<result column="CIGBRAND" property="cigbrand" jdbcType="CHAR" />
+   		<result column="CIGBRANDCODE" property="cigbrandcode" jdbcType="CHAR" />
+   		<result column="ARRANGENUM" property="arrangenum" jdbcType="INTEGER" />
+   		<result column="PRINTNUM1" property="printnum1" jdbcType="INTEGER" />
+   		<result column="PRINTNUM2" property="printnum2" jdbcType="INTEGER" />
+   		<result column="SEARCHSTARTTIME" property="searchStartTime" jdbcType="TIMESTAMP" />
+		<result column="SEARCHENDTIME" property="searchEndTime" jdbcType="TIMESTAMP" />
+		<collection property="dsaPPDetailBarCodeList" ofType="com.icss.vdms.webservice.dsa.bean.DsaPPDetailBarCodeBean">
+			<result column="OB_BCIG_BARCODE" property="obBcigBarcode" jdbcType="CHAR" />
+			<result column="NATURALDATE" property="naturaldate" jdbcType="TIMESTAMP" />
+		</collection>
+	</resultMap>
+	
+	<!-- 汇总工业打码打码机信息以及打码量 -->
+	<!-- TIMESTAMP(CHAR(CURRENT DATE) CONCAT ' 00:00:00') -->
+	<select id="selectDsaPPInfoList" resultMap="DsaPPInfoMap" parameterType="java.lang.String">
+		<![CDATA[ 
+		SELECT 
+			  PRINTERID AS PRINTERIDINFO,
+			  CIGBRANDCODE AS CIGBRANDCODEINFO,
+			  CIGBRAND AS CIGBRANDINFO,
+			  COUNT(ID) AS APPLYNUM
+		FROM PP_CIGINFO
+		WHERE PRINTSTATUS > 0 
+			  AND NATURALDATE BETWEEN VARCHAR_FORMAT(#{searchEndTime},'yyyy-mm-dd') AND #{searchEndTime}
+		GROUP BY PRINTERID,CIGBRANDCODE,CIGBRAND
+		]]>
+	</select>
+	
+	<!-- 汇总工业打码指定打码机指定时间内打码量 -->
+	<select id="selectDsaPPDetailList" resultMap="DsaPPDetailMap" parameterType="com.icss.vdms.webservice.dsa.agreement.DsaSearchMsgAgreement">
+		<![CDATA[ 
+			SELECT A.BALUUID,
+	           A.PPID,
+	           A.PRINTERID,
+	           A.CIGBRANDCODE,
+	           A.CIGBRAND,
+	           A.ARRANGENUM,
+	           (SELECT COUNT(ID) FROM PP_CIGINFO WHERE PRINTERID = #{searchId} AND BALUUID = A.BALUUID AND NATURALDATE BETWEEN A.STARTTIME AND #{searchStartTime}) AS PRINTNUM1,
+	           (SELECT COUNT(ID) FROM PP_CIGINFO WHERE PRINTERID = #{searchId} AND BALUUID = A.BALUUID AND NATURALDATE BETWEEN A.STARTTIME AND #{searchEndTime}) AS PRINTNUM2,
+	           '91'||
+	           TRIM(B.CIGBRANDCODE)||
+	           TRIM(B.FACTCODE )||
+	           TRIM(CHAR(year(B.PRODUCEDATE)))||
+	           TRIM(CHAR(month(B.PRODUCEDATE)))||
+	           TRIM(CHAR(day(B.PRODUCEDATE)))||
+	           TRIM(CHAR(B.TRADETYPE))||
+	           B.SERIALNUM AS OB_BCIG_BARCODE,
+	           B.NATURALDATE
+        FROM PP_ARRANGE A JOIN PP_CIGINFO B ON A.BALUUID = B.BALUUID
+        WHERE A.PRINTERID = #{searchId} AND 
+              NATURALDATE BETWEEN #{searchStartTime} AND #{searchEndTime}
+        ]]>
+	</select>
+	
+</mapper>

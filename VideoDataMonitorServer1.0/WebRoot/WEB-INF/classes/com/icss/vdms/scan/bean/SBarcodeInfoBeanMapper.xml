@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.icss.vdms.scan.dao.SBarcodeInfoDao" >
+  <resultMap id="BaseResultMap" type="com.icss.vdms.scan.bean.SBarcodeInfoBean" >
+    <id column="BI_ID" property="biId" jdbcType="BIGINT" />
+    <result column="BI_BARCODE" property="biBarcode" jdbcType="CHAR" />
+    <result column="BI_PCIG_BRAND" property="biPcigBrand" jdbcType="VARCHAR" />
+    <result column="BI_PCIG_NAME" property="biPcigName" jdbcType="VARCHAR" />
+    <result column="BI_BCIG_BRAND" property="biBcigBrand" jdbcType="VARCHAR" />
+    <result column="BI_BCIG_NAME" property="biBcigName" jdbcType="VARCHAR" />
+    <result column="BI_FACT_CODE" property="biFactCode" jdbcType="CHAR" />
+    <result column="BI_PRODUCE_DATE" property="biProduceDate" jdbcType="TIMESTAMP" />
+    <result column="BI_TRADE_TYPE" property="biTradeType" jdbcType="INTEGER" />
+    <result column="BI_SERIAL_NUM" property="biSerialNum" jdbcType="CHAR" />
+    <result column="BI_SCAN_DATE" property="biScanDate" jdbcType="TIMESTAMP" />
+    <result column="BI_BILL_UUID" property="biBillUuid" jdbcType="VARCHAR" />
+    <result column="BI_SCANNER_TYPE" property="biScannerType" jdbcType="CHAR" />
+    <result column="BI_SCANNER_CODE" property="biScannerCode" jdbcType="VARCHAR" />
+    <result column="BI_SCAN_PC_CODE" property="biScanPcCode" jdbcType="VARCHAR" />
+    <result column="BI_FEEDBACK" property="biFeedback" jdbcType="INTEGER" />
+    <result column="BI_FEEDBACK_TIME" property="biFeedbackTime" jdbcType="TIMESTAMP" />
+    <result column="BI_PALLET_CODE" property="biPalletCode" jdbcType="VARCHAR" />
+    <result column="BI_PACK_ID" property="biPackId" jdbcType="BIGINT" />
+    <result column="BI_HZ_UUID" property="biHzUuid" jdbcType="VARCHAR" />
+    <result column="BI_COMMERCE_CODE" property="biCommerceCode" jdbcType="VARCHAR" />
+    <result column="BI_MEMO" property="biMemo" jdbcType="VARCHAR" />
+    <result column="BI_EXT1" property="biExt1" jdbcType="VARCHAR" />
+    <result column="BI_EXT2" property="biExt2" jdbcType="VARCHAR" />
+    <result column="BI_BACK_WAREHOURCE_FLAG" property="biBackWarehourceFlag" jdbcType="CHAR" />
+    <result column="BI_MONITOR_STATUS" property="biMonitorStatus" jdbcType="CHAR" />
+    <result column="BI_STANDARD_SCAN_DATE" property="biStandardScanDate" jdbcType="TIMESTAMP" />
+    <result column="BI_LOCAL_SCAN_DATE" property="biLocalScanDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BI_ID, BI_BARCODE, BI_PCIG_BRAND,BI_PCIG_NAME, BI_BCIG_BRAND,BI_BCIG_NAME, BI_FACT_CODE, BI_PRODUCE_DATE, BI_TRADE_TYPE, 
+    BI_SERIAL_NUM, BI_SCAN_DATE, BI_BILL_UUID, BI_SCANNER_TYPE, BI_SCANNER_CODE, BI_SCAN_PC_CODE, 
+    BI_FEEDBACK, BI_FEEDBACK_TIME, BI_PALLET_CODE, BI_PACK_ID, BI_HZ_UUID, BI_COMMERCE_CODE, 
+    BI_MEMO, BI_EXT1, BI_EXT2, BI_BACK_WAREHOURCE_FLAG, BI_MONITOR_STATUS, BI_STANDARD_SCAN_DATE, 
+    BI_LOCAL_SCAN_DATE
+  </sql>
+  <select id="selectByBiBarcode" parameterType="java.lang.String">
+  	select BI_ID from S_BARCODE_INFO where BI_BARCODE = #{biBarcode,jdbcType=CHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from S_BARCODE_INFO
+    where BI_ID = #{biId,jdbcType=BIGINT}
+  </select>
+  <!-- 删除条码 -->
+  <delete id="deleteBarcodeInfoByBarcode" parameterType="java.lang.String" >
+  	delete from S_BARCODE_INFO
+  	where BI_BARCODE = #{biBarcode,jdbcType=CHAR}
+  </delete>
+  <!-- 删除条码根据单据UUID -->
+  <delete id="deleteBarcodeByBillUuid" parameterType="java.lang.String">
+  	delete from S_BARCODE_INFO
+  	where BI_BILL_UUID = #{biBillUuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from S_BARCODE_INFO
+    where BI_ID = #{biId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.icss.vdms.scan.bean.SBarcodeInfoBean" >
+    insert into S_BARCODE_INFO (BI_ID, BI_BARCODE, BI_PCIG_BRAND, 
+      BI_BCIG_BRAND, BI_FACT_CODE, BI_PRODUCE_DATE, 
+      BI_TRADE_TYPE, BI_SERIAL_NUM, BI_SCAN_DATE, 
+      BI_BILL_UUID, BI_SCANNER_TYPE, BI_SCANNER_CODE, 
+      BI_SCAN_PC_CODE, BI_FEEDBACK, BI_FEEDBACK_TIME, 
+      BI_PALLET_CODE, BI_PACK_ID, BI_HZ_UUID, 
+      BI_COMMERCE_CODE, BI_MEMO, BI_EXT1, 
+      BI_EXT2, BI_BACK_WAREHOURCE_FLAG, BI_MONITOR_STATUS, 
+      BI_STANDARD_SCAN_DATE, BI_LOCAL_SCAN_DATE
+      )
+    values (#{biId,jdbcType=BIGINT}, #{biBarcode,jdbcType=CHAR}, #{biPcigBrand,jdbcType=VARCHAR}, 
+      #{biBcigBrand,jdbcType=VARCHAR}, #{biFactCode,jdbcType=CHAR}, #{biProduceDate,jdbcType=TIMESTAMP}, 
+      #{biTradeType,jdbcType=INTEGER}, #{biSerialNum,jdbcType=CHAR}, #{biScanDate,jdbcType=TIMESTAMP}, 
+      #{biBillUuid,jdbcType=VARCHAR}, #{biScannerType,jdbcType=CHAR}, #{biScannerCode,jdbcType=VARCHAR}, 
+      #{biScanPcCode,jdbcType=VARCHAR}, #{biFeedback,jdbcType=INTEGER}, #{biFeedbackTime,jdbcType=TIMESTAMP}, 
+      #{biPalletCode,jdbcType=VARCHAR}, #{biPackId,jdbcType=BIGINT}, #{biHzUuid,jdbcType=VARCHAR}, 
+      #{biCommerceCode,jdbcType=VARCHAR}, #{biMemo,jdbcType=VARCHAR}, #{biExt1,jdbcType=VARCHAR}, 
+      #{biExt2,jdbcType=VARCHAR}, #{biBackWarehourceFlag,jdbcType=CHAR}, #{biMonitorStatus,jdbcType=CHAR}, 
+      #{biStandardScanDate,jdbcType=TIMESTAMP}, #{biLocalScanDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icss.vdms.scan.bean.SBarcodeInfoBean" >
+    insert into S_BARCODE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="biBarcode != null" >
+        BI_BARCODE,
+      </if>
+      <if test="biPcigBrand != null" >
+        BI_PCIG_BRAND,
+      </if>
+      <if test="biPcigName != null" >
+        BI_PCIG_NAME,
+      </if>
+      <if test="biBcigBrand != null" >
+        BI_BCIG_BRAND,
+      </if>
+      <if test="biBcigName != null" >
+        BI_BCIG_NAME,
+      </if>
+      <if test="biFactCode != null" >
+        BI_FACT_CODE,
+      </if>
+      <if test="biProduceDate != null" >
+        BI_PRODUCE_DATE,
+      </if>
+      <if test="biTradeType != null" >
+        BI_TRADE_TYPE,
+      </if>
+      <if test="biSerialNum != null" >
+        BI_SERIAL_NUM,
+      </if>
+      <if test="biScanDate != null" >
+        BI_SCAN_DATE,
+      </if>
+      <if test="biBillUuid != null" >
+        BI_BILL_UUID,
+      </if>
+      <if test="biScannerType != null" >
+        BI_SCANNER_TYPE,
+      </if>
+      <if test="biScannerCode != null" >
+        BI_SCANNER_CODE,
+      </if>
+      <if test="biScanPcCode != null" >
+        BI_SCAN_PC_CODE,
+      </if>
+      <if test="biFeedback != null" >
+        BI_FEEDBACK,
+      </if>
+      <if test="biFeedbackTime != null" >
+        BI_FEEDBACK_TIME,
+      </if>
+      <if test="biPalletCode != null" >
+        BI_PALLET_CODE,
+      </if>
+      <if test="biPackId != null" >
+        BI_PACK_ID,
+      </if>
+      <if test="biHzUuid != null" >
+        BI_HZ_UUID,
+      </if>
+      <if test="biCommerceCode != null" >
+        BI_COMMERCE_CODE,
+      </if>
+      <if test="biMemo != null" >
+        BI_MEMO,
+      </if>
+      <if test="biExt1 != null" >
+        BI_EXT1,
+      </if>
+      <if test="biExt2 != null" >
+        BI_EXT2,
+      </if>
+      <if test="biBackWarehourceFlag != null" >
+        BI_BACK_WAREHOURCE_FLAG,
+      </if>
+      <if test="biMonitorStatus != null" >
+        BI_MONITOR_STATUS,
+      </if>
+      <if test="biStandardScanDate != null" >
+        BI_STANDARD_SCAN_DATE,
+      </if>
+      <if test="biLocalScanDate != null" >
+        BI_LOCAL_SCAN_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="biBarcode != null" >
+        #{biBarcode,jdbcType=CHAR},
+      </if>
+      <if test="biPcigBrand != null" >
+        #{biPcigBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="biPcigName != null" >
+        #{biPcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="biBcigBrand != null" >
+        #{biBcigBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="biBcigName != null" >
+        #{biBcigName,jdbcType=VARCHAR},
+      </if>
+      <if test="biFactCode != null" >
+        #{biFactCode,jdbcType=CHAR},
+      </if>
+      <if test="biProduceDate != null" >
+        #{biProduceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biTradeType != null" >
+        #{biTradeType,jdbcType=INTEGER},
+      </if>
+      <if test="biSerialNum != null" >
+        #{biSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="biScanDate != null" >
+        #{biScanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biBillUuid != null" >
+        #{biBillUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="biScannerType != null" >
+        #{biScannerType,jdbcType=CHAR},
+      </if>
+      <if test="biScannerCode != null" >
+        #{biScannerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biScanPcCode != null" >
+        #{biScanPcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biFeedback != null" >
+        #{biFeedback,jdbcType=INTEGER},
+      </if>
+      <if test="biFeedbackTime != null" >
+        #{biFeedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biPalletCode != null" >
+        #{biPalletCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biPackId != null" >
+        #{biPackId,jdbcType=BIGINT},
+      </if>
+      <if test="biHzUuid != null" >
+        #{biHzUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="biCommerceCode != null" >
+        #{biCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biMemo != null" >
+        #{biMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="biExt1 != null" >
+        #{biExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="biExt2 != null" >
+        #{biExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="biBackWarehourceFlag != null" >
+        #{biBackWarehourceFlag,jdbcType=CHAR},
+      </if>
+      <if test="biMonitorStatus != null" >
+        #{biMonitorStatus,jdbcType=CHAR},
+      </if>
+      <if test="biStandardScanDate != null" >
+        #{biStandardScanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biLocalScanDate != null" >
+        #{biLocalScanDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icss.vdms.scan.bean.SBarcodeInfoBean" >
+    update S_BARCODE_INFO
+    <set >
+      <if test="biPcigBrand != null" >
+        BI_PCIG_BRAND = #{biPcigBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="biBcigBrand != null" >
+        BI_BCIG_BRAND = #{biBcigBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="biFactCode != null" >
+        BI_FACT_CODE = #{biFactCode,jdbcType=CHAR},
+      </if>
+      <if test="biProduceDate != null" >
+        BI_PRODUCE_DATE = #{biProduceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biTradeType != null" >
+        BI_TRADE_TYPE = #{biTradeType,jdbcType=INTEGER},
+      </if>
+      <if test="biSerialNum != null" >
+        BI_SERIAL_NUM = #{biSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="biScanDate != null" >
+        BI_SCAN_DATE = #{biScanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biBillUuid != null" >
+        BI_BILL_UUID = #{biBillUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="biScannerType != null" >
+        BI_SCANNER_TYPE = #{biScannerType,jdbcType=CHAR},
+      </if>
+      <if test="biScannerCode != null" >
+        BI_SCANNER_CODE = #{biScannerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biScanPcCode != null" >
+        BI_SCAN_PC_CODE = #{biScanPcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biFeedback != null" >
+        BI_FEEDBACK = #{biFeedback,jdbcType=INTEGER},
+      </if>
+      <if test="biFeedbackTime != null" >
+        BI_FEEDBACK_TIME = #{biFeedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biPalletCode != null" >
+        BI_PALLET_CODE = #{biPalletCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biPackId != null" >
+        BI_PACK_ID = #{biPackId,jdbcType=BIGINT},
+      </if>
+      <if test="biHzUuid != null" >
+        BI_HZ_UUID = #{biHzUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="biCommerceCode != null" >
+        BI_COMMERCE_CODE = #{biCommerceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="biMemo != null" >
+        BI_MEMO = #{biMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="biExt1 != null" >
+        BI_EXT1 = #{biExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="biExt2 != null" >
+        BI_EXT2 = #{biExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="biBackWarehourceFlag != null" >
+        BI_BACK_WAREHOURCE_FLAG = #{biBackWarehourceFlag,jdbcType=CHAR},
+      </if>
+      <if test="biMonitorStatus != null" >
+        BI_MONITOR_STATUS = #{biMonitorStatus,jdbcType=CHAR},
+      </if>
+      <if test="biStandardScanDate != null" >
+        BI_STANDARD_SCAN_DATE = #{biStandardScanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biLocalScanDate != null" >
+        BI_LOCAL_SCAN_DATE = #{biLocalScanDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BI_BARCODE = #{biBarcode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icss.vdms.scan.bean.SBarcodeInfoBean" >
+    update S_BARCODE_INFO
+    set BI_BARCODE = #{biBarcode,jdbcType=CHAR},
+      BI_PCIG_BRAND = #{biPcigBrand,jdbcType=VARCHAR},
+      BI_BCIG_BRAND = #{biBcigBrand,jdbcType=VARCHAR},
+      BI_FACT_CODE = #{biFactCode,jdbcType=CHAR},
+      BI_PRODUCE_DATE = #{biProduceDate,jdbcType=TIMESTAMP},
+      BI_TRADE_TYPE = #{biTradeType,jdbcType=INTEGER},
+      BI_SERIAL_NUM = #{biSerialNum,jdbcType=CHAR},
+      BI_SCAN_DATE = #{biScanDate,jdbcType=TIMESTAMP},
+      BI_BILL_UUID = #{biBillUuid,jdbcType=VARCHAR},
+      BI_SCANNER_TYPE = #{biScannerType,jdbcType=CHAR},
+      BI_SCANNER_CODE = #{biScannerCode,jdbcType=VARCHAR},
+      BI_SCAN_PC_CODE = #{biScanPcCode,jdbcType=VARCHAR},
+      BI_FEEDBACK = #{biFeedback,jdbcType=INTEGER},
+      BI_FEEDBACK_TIME = #{biFeedbackTime,jdbcType=TIMESTAMP},
+      BI_PALLET_CODE = #{biPalletCode,jdbcType=VARCHAR},
+      BI_PACK_ID = #{biPackId,jdbcType=BIGINT},
+      BI_HZ_UUID = #{biHzUuid,jdbcType=VARCHAR},
+      BI_COMMERCE_CODE = #{biCommerceCode,jdbcType=VARCHAR},
+      BI_MEMO = #{biMemo,jdbcType=VARCHAR},
+      BI_EXT1 = #{biExt1,jdbcType=VARCHAR},
+      BI_EXT2 = #{biExt2,jdbcType=VARCHAR},
+      BI_BACK_WAREHOURCE_FLAG = #{biBackWarehourceFlag,jdbcType=CHAR},
+      BI_MONITOR_STATUS = #{biMonitorStatus,jdbcType=CHAR},
+      BI_STANDARD_SCAN_DATE = #{biStandardScanDate,jdbcType=TIMESTAMP},
+      BI_LOCAL_SCAN_DATE = #{biLocalScanDate,jdbcType=TIMESTAMP}
+    where BI_ID = #{biId,jdbcType=BIGINT}
+  </update>
+</mapper>
